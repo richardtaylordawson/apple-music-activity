@@ -1,0 +1,21 @@
+{
+  "name": "applemusic",
+  "version": "1.0.0",
+  "description": "Analyzer of Apple Music data to show you what you love listening to, the times you most listen, etc. Written using Charts.js, Bootstrap, etc.",
+  "homepage": "https://richardtaylordawson.github.io/applemusic/",
+  "dependencies": {
+    "@uppy/core": "^0.30.2",
+    "@uppy/dashboard": "^0.30.2",
+    "@uppy/instagram": "^0.30.2",
+    "@uppy/tus": "^0.30.2",
+    "chart.js": "^2.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardtaylordawson/applemusic.git"
+  },
+  "author": "richardtaylordawson",
+  "bugs": {
+    "url": "https://github.com/richardtaylordawson/applemusic/issues"
+  }
+}
