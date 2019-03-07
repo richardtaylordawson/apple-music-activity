@@ -1,61 +1,31 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Title of the document</title>
-</head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 
-<body>
-    <input type="file" id="file"/>
-</body>
+    <!-- Uppy File Uploader -->
+    <link rel="stylesheet" href="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.css">
 
-<script>
-    document.getElementById("file").addEventListener("change", (e) => {
-        let files = e.target.files;
+    <!-- Bootstrap Grid -->
+    <link rel="stylesheet" href="/assets/third-party/bootstrap-grid-24.css"/>
 
-        for (var i = 0, f; f = files[i]; i++) {
-            // // Only process image files.
-            // if (!f.type.match('image.*')) {
-            // continue;
-            // }
+    <!-- Custom Styling-->
+    <link rel="stylesheet" href="/assets/css/index.css"/>
+  </head>
 
-            var reader = new FileReader();
+  <body>
+    <div class="row">
+      <div class="col-sm-offset-4 col-sm-16" id="fileUpload"></div>
+    </div>
+  </body>
 
-            // Closure to capture the file information.
-            reader.onload = (function(theFile) {
-                return function(e) {
-                    var csv = e.target.result;
+  <!-- Chart JS -->
+  <script type="text/javascript" src="/node_modules/chart.js/dist/Chart.bundle.min.js"></script>
 
-                    var lines = csv.split("\n");
+  <!-- Uppy File Uploader -->
+  <script type="text/javascript" src="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.js"></script>
 
-                    var result = [];
-
-                    var headers=lines[0].split(",");
-
-                    for(var i=1;i<lines.length;i++){
-
-                        var obj = {};
-                        var currentline=lines[i].split(",");
-
-                        for(var j=0;j<headers.length;j++){
-                            obj[headers[j]] = currentline[j];
-                        }
-
-                        result.push(obj);
-
-                    }
-
-                    result.forEach((activity) => {
-                        for(var attribute in activity) {
-                            console.log(attribute["Store Country Name"]);
-                        }
-                    });
-                };
-            })(f);
-
-            // Read in the image file as a data URL.
-            reader.readAsText(f);
-        }
-    });
-</script>
+  <script type="text/javascript" src="fileupload.js"></script>
 </html>
