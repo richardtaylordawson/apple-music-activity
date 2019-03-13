@@ -1,3 +1,18 @@
+@font-face { font-family: SF-Bold; src: url('/assets/fonts/SF-Compact-Rounded-Bold.otf'); }
+@font-face { font-family: SF-Regular; src: url('/assets/fonts/SF-Compact-Rounded-Regular.otf'); }
+
 body {
-    padding: 50px 50px;
+  padding: 50px 50px;
+  font-family: SF-Regular;
+  background-image: linear-gradient(to right, #fa57c1, #b166cc, #7572ff, #69a6f9);
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: SF-Bold;
 }
