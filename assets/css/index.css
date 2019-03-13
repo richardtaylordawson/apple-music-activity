@@ -16,3 +16,17 @@ h5,
 h6 {
   font-family: SF-Bold;
 }
+
+/* Tablet Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 25px;
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 425px) {
+  body {
+    padding: 10px;
+  }
+}
