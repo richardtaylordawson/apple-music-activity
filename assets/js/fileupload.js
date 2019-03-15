@@ -35,8 +35,8 @@ uppy.use(Uppy.XHRUpload, {
   endpoint: '//api2.transloadit.com',
   formData: true,
   fieldName: 'files[]'
-})
+});
 
-uppy.use(Uppy.Tus, { endpoint: 'https://master.tus.io/files/' })
+uppy.use(Uppy.Tus, { endpoint: 'https://master.tus.io/files/' });
 
-uppy.use(Uppy.Webcam, { target: Uppy.Dashboard })
+uppy.use(Uppy.Webcam, { target: Uppy.Dashboard });

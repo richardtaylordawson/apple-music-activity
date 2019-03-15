@@ -14,15 +14,41 @@
     <link rel="stylesheet" href="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.css">
 
     <!-- Bootstrap Grid -->
-    <link rel="stylesheet" href="/assets/third-party/bootstrap-grid-24.css"/>
+    <link rel="stylesheet" href="assets/third-party/bootstrap-grid-24.css"/>
 
     <!-- Custom Styling -->
-    <link rel="stylesheet" href="/assets/css/index.css"/>
+    <link rel="stylesheet" href="assets/css/index.css"/>
   </head>
 
   <body>
     <div class="container-fluid">
-      <div class="row">
+      <div id="home-container">
+        <div class="row">
+          <div class="col-sm-offset-4 col-sm-8">
+            <h1>Apple Music Stats 🎵</h1>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-offset-4 col-sm-8">
+            <div class="white-box" id="how-to-box">
+              <p class="emoji">🤔</p>
+              <h2>Where is my file?</h2>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="white-box" id="get-stats-box">
+              <p class="emoji">🤓</p>
+              <h2>Get My Stats</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="how-to-container" class="hidden">
+        <h1>Do some stuff here</h1>
+      </div>
+      <div id="upload-container" class="hidden">
+        <div class="row">
           <div class="col-sm-offset-4 col-sm-16">
             <h1>Apple Music Stats</h1>
           </div>
@@ -30,15 +56,20 @@
         <div class="row">
           <div class="col-sm-offset-4 col-sm-16" id="fileUpload"></div>
         </div>
+      </div>
     </div>
+
+    <footer id="footer">
+      <p>Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>. Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/applemusic/issues" target="_blank">Let me know</a> 🤙</p>
+    </footer>
   </body>
 
   <!-- Chart JS -->
-  <script type="text/javascript" src="/node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+  <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
 
   <!-- Uppy File Uploader -->
   <script type="text/javascript" src="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.js"></script>
 
-  <!-- -->
-  <script type="text/javascript" src="/assets/js/fileupload.js"></script>
+  <script type="text/javascript" src="assets/js/fileupload.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
 </html>
