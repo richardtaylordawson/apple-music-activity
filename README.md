@@ -19,4 +19,4 @@
 [![GitHub Language Count](https://img.shields.io/github/languages/count/richardtaylordawson/apple-music-activity.svg)](https://github.com/richardtaylordawson/apple-music-activity/)
 
 ## View Project
-Not Available
+https://richardtaylordawson.github.io/apple-music-activity/
