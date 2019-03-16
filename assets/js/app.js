@@ -1,6 +1,6 @@
 /**
  * @author Richard Dawson
- * @classdesc involves all logic, event listeners, and more for the Apple Music Stats app
+ * @classdesc involves all logic, event listeners, and more for the Apple Music Activity app
  */
 class App {
   /**
@@ -8,10 +8,14 @@ class App {
    * Initializes the app state and starts the user at the first screen
    */
   constructor() {
+    this.navContainer = {
+      "nav-hamburger": document.getElementById("nav-hamburger")
+    }
+
     this.homeScreen = {
       "home-container": document.getElementById("home-container"),
       "how-to-box": document.getElementById("how-to-box"),
-      "get-stats-box": document.getElementById("get-stats-box"),
+      "get-activity-box": document.getElementById("get-activity-box"),
       "transition-interval": ""
     }
 
@@ -30,8 +34,17 @@ class App {
    * Initializes the app's click events
    */
   initializeClickEvents() {
+    this.navContainer["nav-hamburger"].addEventListener("click", () => this.toggleHamburger());
     this.homeScreen["how-to-box"].addEventListener("click", () => this.transitionHowToContainer());
-    this.homeScreen["get-stats-box"].addEventListener("click", () => this.transitionUploadContainer());
+    this.homeScreen["get-activity-box"].addEventListener("click", () => this.transitionUploadContainer());
+  }
+
+  toggleHamburger() {
+    const hamburger = this.navContainer["nav-hamburger"];
+
+    (hamburger.classList.contains("is-active"))
+      ? hamburger.classList.remove("is-active")
+      : hamburger.classList.add("is-active");
   }
 
   /**
@@ -56,27 +69,24 @@ class App {
    */
   hideElement(element) {
     this.homeScreen["transition-interval"] = setInterval(() => {
-      if(element.style.opacity === "") {
-        element.style.opacity = "1";
-      } else {
-        element.style.opacity -= "0.1"
-      }
-      // this.element.style.opacity -= "0.01";
+      (element.style.opacity === "")
+        ? element.style.opacity = "1"
+        : element.style.opacity -= "0.01";
 
-      if (this.element.style.opacity = "0") {
-        clearInterval(this.quizScreen["quiz-question-interval"]);
+      if (element.style.opacity == "0") {
+        clearInterval(this.homeScreen["transition-interval"]);
+        element.classList.add("hidden");
+        this.showElement();
       }
-    }, 25);
+    }, 5);
   }
 
   /**
    * Show's the passed in element with a transition effect
    * @param {element} element - DOM object that will be shown
    */
-  showElement(element) {
-    element.classList.remove("hidden");
-    element.classList.remove("fadeOut");
-    element.classList.add("fadeIn");
+  showElement() {
+    this.howToScreen["how-to-container"].classList.remove("hidden");
   }
 }
 

@@ -2,7 +2,7 @@
 @font-face { font-family: SF-Regular; src: url('/assets/fonts/SF-Compact-Rounded-Regular.otf'); }
 
 body {
-  padding: 50px 50px;
+  padding: 0px 50px;
   font-family: SF-Regular;
   background-image: linear-gradient(to right, #fa57c1, #b166cc, #7572ff, #69a6f9);
   color: white;
@@ -18,23 +18,26 @@ h6 {
   font-family: SF-Bold;
 }
 
-hr {
-  width: 67%;
-  background-color: white;
-  height: 3px;
-  margin-bottom: 70px;
+a {
+  text-decoration: underline;
+  color: white;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
 
 /* Tablet Adjustments */
 @media (max-width: 768px) {
   body {
-    padding: 25px;
+    padding: 0 25px;
   }
 }
 
 /* Mobile Adjustments */
 @media (max-width: 425px) {
   body {
-    padding: 10px;
+    padding: 0;
   }
 }

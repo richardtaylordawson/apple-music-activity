@@ -1,48 +1,37 @@
 /* Start of generic classes */
-.white-box {
-  background-color: white;
-  border-radius: 4px;
-  color: #eb2c5e;
-  text-align: center;
-  padding: 50px;
-  cursor: pointer;
-  transition: all 0.25s;
-}
-
-.white-box:hover {
-  transform: translate(0, -5px);
-  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.4);
-}
-
 .emoji {
   font-size: 80px;
   margin: 0;
 }
 
- /* Fade-In Effect */
-.fadeIn {
-  display: block;
-  opacity: 1;
-  transition: opacity 1s linear;
-}
-
-/* Fade-Out Effect */
-.fadeOut {
-  display: none;
-  opacity: 0;
-  transition: display 0s 1s, opacity 1s linear;
-}
-
 .hidden { display: none; }
 
+.collapse-column-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.collapse-left-padding {
+  padding-left: 0;
+}
+
+.collapse-right-padding {
+  padding-right: 0;
+}
+
 /* Start of specific components */
-#footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  line-height: 0px;
-  padding-left: 20%;
-  font-size: 12px;
+.white-box {
+  background-color: white;
+  border-radius: 4px;
+  color: #eb2c5e;
+  text-align: center;
+  padding: 50px 0;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-bottom: 15px;
+}
+
+.white-box:hover {
+  transform: translate(0, -5px);
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.4);
 }

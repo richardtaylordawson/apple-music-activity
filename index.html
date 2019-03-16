@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <meta name="description" content="Application that takes your Apple Music data and analyzes it and displays reports of your listening history.">
-    <meta name="keywords" content="Apple, Apple Music, Stats, Analyzer, Data">
+    <meta name="description" content=" Music Activity is an application that takes your Apple Music data provided by Apple and displays reports of your listening history.">
+    <meta name="keywords" content="Apple, Apple Music, Stats, Analyzer, Data, Activity">
     <meta name="author" content="Richard Taylor Dawson">
 
-    <title>Apple Music Stats</title>
+    <title> Music Activity</title>
 
     <!-- Uppy File Uploader -->
     <link rel="stylesheet" href="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.css">
@@ -16,41 +16,105 @@
     <!-- Bootstrap Grid -->
     <link rel="stylesheet" href="assets/third-party/bootstrap-grid-24.css"/>
 
-    <!-- Custom Styling -->
+    <!-- Hamburger Menu -->
+    <link rel="stylesheet" href="assets/third-party/hamburgers.css"/>
+
+    <!-- App Styling -->
     <link rel="stylesheet" href="assets/css/index.css"/>
   </head>
 
   <body>
     <div class="container-fluid">
-      <div id="home-container">
+      <div id="nav-container">
         <div class="row">
-          <div class="col-sm-offset-4 col-sm-8">
-            <h1>Apple Music Stats 🎵</h1>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-offset-4 col-sm-8">
-            <div class="white-box" id="how-to-box">
-              <p class="emoji">🤔</p>
-              <h2>Where is my file?</h2>
+          <div class="col-sm-offset-2 col-sm-20 col-xs-offset-1 col-xs-22 nav">
+            <div class="col-sm-12 col-xs-20 collapse-column-padding">
+              <h2 class="nav-title"> Music Activity</h2>
+            </div>
+            <div class="col-sm-12 col-xs-4 collapse-column-padding">
+              <p class="nav-subtitle">Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>.<br> Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/applemusic/issues" target="_blank">Let me know</a> 🤙</p>
+              <button class="hamburger hamburger--collapse" type="button" id="nav-hamburger">
+                <span class="hamburger-box">
+                  <span class="hamburger-inner"></span>
+                </span>
+              </button>
             </div>
           </div>
-          <div class="col-sm-8">
-            <div class="white-box" id="get-stats-box">
+        </div>
+      </div>
+      <div id="sub-nav-container">
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-20 col-xs-offset-1 col-xs-22">
+            <div class="col-sm-12 col-xs-20 collapse-column-padding" style="margin-top: -30px;">
+              <h2>< Back</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="home-container">
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-20 col-xs-offset-1 col-xs-22 collapse-column-padding">
+            <p> Music Activity takes your Apple Music data and analyzes it and displays reports of your listening history.</p>
+            <h1>What would you like to do?</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-offset-2 col-md-10 col-xs-offset-1 col-xs-11 collapse-left-padding">
+            <div class="white-box" id="how-to-box">
+              <p class="emoji">🤔</p>
+              <h2>How do I get my data?</h2>
+            </div>
+          </div>
+          <div class="col-sm-10 col-xs-11 collapse-right-padding">
+            <div class="white-box" id="get-activity-box">
               <p class="emoji">🤓</p>
-              <h2>Get My Stats</h2>
+              <h2>Calculate my activity</h2>
             </div>
           </div>
         </div>
       </div>
       <div id="how-to-container" class="hidden">
-        <h1>Do some stuff here</h1>
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-20 collapse-column-padding">
+            <div class="row">
+              <div class="col-sm-12">
+                <h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
+              </div>
+              <div class="col-sm-12">
+                <img src="assets/images/how-to-login-page.png" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                  <img src="assets/images/how-to-manage-your-data.png" />
+              </div>
+              <div class="col-sm-12">
+                  <h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
+              </div>
+              <div class="col-sm-12">
+                <img src="assets/images/how-to-copy-of-data.png" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                  <img src="assets/images/how-to-max-file-size.png" />
+              </div>
+              <div class="col-sm-12">
+                  <h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="upload-container" class="hidden">
         <div class="row">
           <div class="col-sm-offset-4 col-sm-16">
-            <h1>Apple Music Stats</h1>
+            <h1> Music Activity</h1>
           </div>
         </div>
         <div class="row">
@@ -58,10 +122,6 @@
         </div>
       </div>
     </div>
-
-    <footer id="footer">
-      <p>Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>. Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/applemusic/issues" target="_blank">Let me know</a> 🤙</p>
-    </footer>
   </body>
 
   <!-- Chart JS -->
@@ -70,6 +130,9 @@
   <!-- Uppy File Uploader -->
   <script type="text/javascript" src="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.js"></script>
 
+  <!-- File Upload -->
   <script type="text/javascript" src="assets/js/fileupload.js"></script>
+
+  <!-- App Functionality -->
   <script type="text/javascript" src="assets/js/app.js"></script>
 </html>
