@@ -1,10 +1,28 @@
 .simple-card {
   height: 335px;
-  padding: 25px;
   border-radius: 10px;
   background-color: rgb(97, 97, 97);
 }
 
 .simple-card h2 {
   margin: 0;
+}
+
+.simple-card-header {
+  padding: 10px 16px;
+  height: 50px;
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.simple-card-body {
+  padding: 20px 16px;
+}
+
+/* Medium Adjustments */
+@media (max-width: 991px) {
+  .simple-card {
+    height: auto;
+  }
 }
