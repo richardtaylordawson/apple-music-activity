@@ -1,0 +1,10 @@
+.simple-card {
+  height: 335px;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: rgb(97, 97, 97);
+}
+
+.simple-card h2 {
+  margin: 0;
+}
