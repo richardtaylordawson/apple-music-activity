@@ -24,12 +24,12 @@
 .dark-pink-bg { background-color: #b166cc; }
 .purple-bg { background-color: #7572ff; }
 .blue-bg { background-color: #69a6f9; }
-.how-to-copy-of-data-bg { background-image: url('https://richardtaylordawson.github.io/apple-music-activity/assets/images/how-to-copy-of-data.png'); }
-.how-to-login-page-bg { background-image: url('https://richardtaylordawson.github.io/apple-music-activity/assets/images/how-to-login-page.png'); }
-.how-to-manage-your-data-bg { background-image: url('https://richardtaylordawson.github.io/apple-music-activity/assets/images/how-to-manage-your-data.png'); }
-.how-to-max-file-size-bg { background-image: url('https://richardtaylordawson.github.io/apple-music-activity/assets/images/how-to-max-file-size.png'); }
-.check-demo-bg { background-image: url('https://richardtaylordawson.github.io/apple-music-activity/assets/images/how-to-login-page.png'); }
-.get-activity-bg { background-image: url('https://richardtaylordawson.github.io/apple-music-activity/assets/images/how-to-max-file-size.png'); }
+.how-to-copy-of-data-bg { background-image: url('./../images/how-to-copy-of-data.png'); }
+.how-to-login-page-bg { background-image: url('./../images/how-to-login-page.png'); }
+.how-to-manage-your-data-bg { background-image: url('./../images/how-to-manage-your-data.png'); }
+.how-to-max-file-size-bg { background-image: url('./../images/how-to-max-file-size.png'); }
+.check-demo-bg { background-image: url('./../images/how-to-login-page.png'); }
+.get-activity-bg { background-image: url('./../images/how-to-max-file-size.png'); }
 
 .bg {
   background-size: cover;
