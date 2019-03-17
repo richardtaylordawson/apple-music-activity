@@ -20,7 +20,7 @@ h6 {
 
 a {
   text-decoration: underline;
-  color: white;
+  color: inherit;
 }
 
 img {
