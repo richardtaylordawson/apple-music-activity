@@ -1,5 +1,5 @@
-@font-face { font-family: SF-Bold; src: url('https://richardtaylordawson.github.io/apple-music-activity/assets/fonts/SF-Compact-Rounded-Bold.otf'); }
-@font-face { font-family: SF-Regular; src: url('https://richardtaylordawson.github.io/apple-music-activity/assets/fonts/SF-Compact-Rounded-Regular.otf'); }
+@font-face { font-family: SF-Bold; src: url('./../fonts/SF-Compact-Rounded-Bold.otf'); }
+@font-face { font-family: SF-Regular; src: url('./../fonts/SF-Compact-Rounded-Regular.otf'); }
 
 body {
   padding: 0px 50px;
