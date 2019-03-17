@@ -1,3 +1,7 @@
 @import './base.css';
-@import './navigation.css';
-@import './custom.css';
+@import './helper-classes.css';
+@import './components/buttons.css';
+@import './components/modal.css';
+@import './components/navigation.css';
+@import './components/simple-card.css';
+@import './components/option-card.css';

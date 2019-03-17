@@ -19,21 +19,45 @@
     <!-- Hamburger Menu -->
     <link rel="stylesheet" href="assets/third-party/hamburgers.css"/>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
     <!-- App Styling -->
     <link rel="stylesheet" href="assets/css/index.css"/>
   </head>
 
   <body>
+    <!-- Coming Soon Modal -->
+    <div id="coming-soon-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header blue-bg">
+          <div class="pull-right">
+            <i class="fas fa-times fa-2x" id="close-modal-btn"></i></span>
+          </div>
+        </div>
+        <div class="modal-body text-center">
+          <h2>This feature is coming soon!</h2>
+          <h4>Please check out my <a href="https://github.com/richardtaylordawson/apple-music-activity/issues" target="_blank">page</a> for a current update and status.</h4>
+          <h2>😎</h2>
+        </div>
+      </div>
+    </div>
+
     <div class="container-fluid">
       <div id="nav-container">
-        <div class="row">
-          <div class="col-sm-offset-2 col-sm-20 col-xs-offset-1 col-xs-22 nav">
-            <div class="col-sm-12 col-xs-20 collapse-column-padding">
-              <h2 class="nav-title"> Music Activity</h2>
-            </div>
-            <div class="col-sm-12 col-xs-4 collapse-column-padding">
-              <p class="nav-subtitle">Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>.<br> Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/applemusic/issues" target="_blank">Let me know</a> 🤙</p>
-              <button class="hamburger hamburger--collapse" type="button" id="nav-hamburger">
+        <div class="row border-bottom">
+          <div class="col-xs-18 col-sm-12">
+            <h2 class="nav-title mb-1"> Music Activity</h2>
+          </div>
+          <div class="col-xs-6 col-sm-12">
+            <div class="pull-right">
+              <div class="social-media-container">
+                <i class="fab fa-instagram fa-2x mr-2 .mt-1" id="instagram-btn"></i>
+                <i class="fab fa-twitter-square fa-2x mr-2" id="twitter-btn"></i>
+                <i class="fab fa-facebook-square fa-2x mr-2" id="facebook-btn"></i>
+                <i class="fab fa-snapchat-square fa-2x" id="snapchat-btn"></i>
+              </div>
+              <button class="hamburger hamburger--collapse" type="button" id="hamburger-menu-btn">
                 <span class="hamburger-box">
                   <span class="hamburger-inner"></span>
                 </span>
@@ -42,75 +66,111 @@
           </div>
         </div>
       </div>
-      <div id="sub-nav-container">
-        <div class="row">
-          <div class="col-sm-offset-2 col-sm-20 col-xs-offset-1 col-xs-22">
-            <div class="col-sm-12 col-xs-20 collapse-column-padding" style="margin-top: -30px;">
-              <h2>< Back</h2>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div id="home-container">
         <div class="row">
-          <div class="col-sm-offset-2 col-sm-20 col-xs-offset-1 col-xs-22 collapse-column-padding">
-            <p> Music Activity takes your Apple Music data and analyzes it and displays reports of your listening history.</p>
-            <h1>What would you like to do?</h1>
+          <div class="col-xs-24">
+            <p> Music Activity takes your Apple Music data, analyzes it and displays reports showing your listening history. Your data is not stored or shared in anyway unless you use the sharing features provided by this application. If you have any questions please feel free to reach me at <a href="mailto:richardtaylordawson@gmail.com">richard.taylor.dawson@gmail.com</a>.</p>
+            <h1>Get Started</h1>
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-offset-2 col-md-10 col-xs-offset-1 col-xs-11 collapse-left-padding">
-            <div class="white-box" id="how-to-box">
-              <p class="emoji">🤔</p>
-              <h2>How do I get my data?</h2>
+          <div class="col-xs-24 col-sm-8">
+            <div class="option-card" id="how-to-card">
+              <div class="option-card-image bg how-to-bg"></div>
+              <div class="option-card-body">
+                <p class="emoji">🤔</p>
+              </div>
+              <div class="option-card-footer">
+                <p class="blue-bg">How to get your  Music Data</p>
+              </div>
             </div>
           </div>
-          <div class="col-sm-10 col-xs-11 collapse-right-padding">
-            <div class="white-box" id="get-activity-box">
-              <p class="emoji">🤓</p>
-              <h2>Calculate my activity</h2>
+          <div class="col-xs-24 col-sm-8">
+            <div class="option-card" id="check-demo-card">
+              <div class="option-card-image bg check-demo-bg"></div>
+              <div class="option-card-body">
+                <p class="emoji">🤪</p>
+              </div>
+              <div class="option-card-footer">
+                <p class="blue-bg">Check out the demo</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-24 col-sm-8">
+            <div class="option-card" id="get-activity-card">
+              <div class="option-card-image bg get-activity-bg"></div>
+              <div class="option-card-body">
+                <p class="emoji">🤓</p>
+              </div>
+              <div class="option-card-footer">
+                <p class="blue-bg">Get started</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <div id="how-to-container" class="hidden">
-        <div class="row">
-          <div class="col-sm-offset-2 col-sm-20 collapse-column-padding">
-            <div class="row">
-              <div class="col-sm-12">
-                <h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
-              </div>
-              <div class="col-sm-12">
-                <img src="assets/images/how-to-login-page.png" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                  <img src="assets/images/how-to-manage-your-data.png" />
-              </div>
-              <div class="col-sm-12">
-                  <h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
+        <div class="row mb-2">
+          <div class="col-xs-24">
+            <h1 class="btn-back" id="how-to-back-btn"><i class="fas fa-chevron-left"></i> Back</h1>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-xs-12">
+            <div class="simple-card">
+              <div class="simple-card-body">
+                <p><h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2></p>
+                <p class="emoji">🤔</p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
-              </div>
-              <div class="col-sm-12">
-                <img src="assets/images/how-to-copy-of-data.png" />
+          </div>
+          <div class="col-sm-12">
+            <img src="assets/images/how-to-login-page.png" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <img src="assets/images/how-to-manage-your-data.png" />
+          </div>
+          <div class="col-sm-12">
+            <div class="simple-card">
+              <div class="simple-card-body">
+                <p><h2>2. Click on the first option "Get a copy of your data".</h2></p>
+                <p class="emoji">🤔</p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                  <img src="assets/images/how-to-max-file-size.png" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-xs-12">
+            <div class="simple-card">
+              <div class="simple-card-body">
+                <p><h2>3. Select any options you would like to get data for, but make sure to at least include the first option "Apple Media Services Information".</h2></p>
+                <p class="emoji">🤔</p>
               </div>
-              <div class="col-sm-12">
-                  <h2>1. Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <img src="assets/images/how-to-copy-of-data.png" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <img src="assets/images/how-to-max-file-size.png" />
+          </div>
+          <div class="col-sm-12">
+            <div class="simple-card">
+              <div class="simple-card-body">
+                <p><h2>4. Choose your preferred max file size. *Please note that if your total music history is larger than the file size you choose your data may not be accurate.</h2></p>
+                <p class="emoji">🤔</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div id="upload-container" class="hidden">
         <div class="row">
           <div class="col-sm-offset-4 col-sm-16">
@@ -121,18 +181,27 @@
           <div class="col-sm-offset-4 col-sm-16" id="fileUpload"></div>
         </div>
       </div>
+
+      <div id="footer-container">
+        <div class="col-xs-24">
+          <p class="text-small text-center" style="margin-top: 100px;">
+            Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>.
+            Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/apple-music-activity/issues" target="_blank">Let me know</a> 🤙
+          </p>
+        </div>
+      </div>
     </div>
+
+    <!-- Chart JS -->
+    <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
+    <!-- Uppy File Uploader -->
+    <script type="text/javascript" src="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.js"></script>
+
+    <!-- File Upload -->
+    <script type="text/javascript" src="assets/js/fileupload.js"></script>
+
+    <!-- App Functionality -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
   </body>
-
-  <!-- Chart JS -->
-  <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
-
-  <!-- Uppy File Uploader -->
-  <script type="text/javascript" src="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.js"></script>
-
-  <!-- File Upload -->
-  <script type="text/javascript" src="assets/js/fileupload.js"></script>
-
-  <!-- App Functionality -->
-  <script type="text/javascript" src="assets/js/app.js"></script>
 </html>
