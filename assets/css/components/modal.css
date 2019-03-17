@@ -1,5 +1,4 @@
 .modal {
-  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -35,9 +34,8 @@
   background-color: #fefefe;
   color: #fa57c1;
   border-radius: 5px;
-  margin: 15% auto;
+  margin: 10% auto;
   padding: 0;
-  border: 1px solid #888;
   width: 40%;
 }
 
