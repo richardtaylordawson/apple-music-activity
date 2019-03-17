@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://richardtaylordawson.github.io/apple-music-activity/">
-    <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/applecare/ios-apple-music-ma.jpg" alt="Music icon" width=72 height=72>
+    <img src="favicon.ico" alt="Music icon" width=72 height=72>
   </a>
 
   <h3 align="center">Apple Music Activity</h3>
