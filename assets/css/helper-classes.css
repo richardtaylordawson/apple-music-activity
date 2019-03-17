@@ -1,0 +1,27 @@
+/* Display Classes */
+.hidden { display: none; }
+
+/* Border Classes */
+.border-bottom { border-bottom: 1px solid white; }
+
+/* Margin Classes */
+.mb-1 { margin-bottom: 10px; }
+.mb-2 { margin-bottom: 20px; }
+.mr-2 { margin-right: 20px; }
+.mt-1 { margin-top: 10px; }
+
+/* Text Classes */
+.text-small { font-size: 10px; }
+.text-center { text-align: center; }
+
+/* Background Classes */
+.blue-bg { background-color: #69a6f9; }
+.how-to-bg { background-image: url('/assets/images/how-to-copy-of-data.png'); }
+.check-demo-bg { background-image: url('/assets/images/how-to-login-page.png'); }
+.get-activity-bg { background-image: url('/assets/images/how-to-max-file-size.png'); }
+
+.bg {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
