@@ -25,7 +25,7 @@ class App {
       "home-container": document.getElementById("home-container"),
       "how-to-card": document.getElementById("how-to-card"),
       "check-demo-card": document.getElementById("check-demo-card"),
-      "get-activity-card": document.getElementById("get-activity-card"),
+      "get-started-card": document.getElementById("get-started-card"),
       "transition-interval": ""
     }
 
@@ -35,7 +35,8 @@ class App {
     }
 
     this.uploadScreen = {
-      "upload-container": document.getElementById("upload-container")
+      "upload-container": document.getElementById("upload-container"),
+      "upload-back-btn": document.getElementById("upload-back-btn")
     }
 
     this.initializeClickEvents();
@@ -55,17 +56,23 @@ class App {
 
     this.homeScreen["how-to-card"].addEventListener("click", () => this.transitionToHowToContainer());
     this.homeScreen["check-demo-card"].addEventListener("click", () => this.showElement(this.comingSoon.modal));
-    this.homeScreen["get-activity-card"].addEventListener("click", () => this.showElement(this.comingSoon.modal));
+    this.homeScreen["get-started-card"].addEventListener("click", () => this.transitionToUploadContainer());
 
-    this.howToScreen["how-to-back-btn"].addEventListener("click", () => this.transitionToHomeContainer());
+    this.howToScreen["how-to-back-btn"].addEventListener("click", () => {
+      this.transitionToHomeContainer(this.howToScreen["how-to-container"]);
+    });
+
+    this.uploadScreen["upload-back-btn"].addEventListener("click", () => {
+      this.transitionToHomeContainer(this.uploadScreen["upload-container"]);
+    });
   }
 
   /**
    * Transitions the app from the current screen back to the home screen
    * @param {element} element - DOM element of current screen
    */
-  transitionToHomeContainer() {
-    this.hideElement(this.howToScreen["how-to-container"], true, this.homeScreen["home-container"]);
+  transitionToHomeContainer(element) {
+    this.hideElement(element, true, this.homeScreen["home-container"]);
   }
 
   /**
@@ -73,6 +80,13 @@ class App {
    */
   transitionToHowToContainer() {
     this.hideElement(this.homeScreen["home-container"], true, this.howToScreen["how-to-container"]);
+  }
+
+  /**
+   * Transitions the app from the home screen to the upload screen
+   */
+  transitionToUploadContainer() {
+    this.hideElement(this.homeScreen["home-container"], true, this.uploadScreen["upload-container"]);
   }
 
   /**

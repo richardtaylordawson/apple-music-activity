@@ -40,3 +40,12 @@ uppy.use(Uppy.XHRUpload, {
 uppy.use(Uppy.Tus, { endpoint: 'https://master.tus.io/files/' });
 
 uppy.use(Uppy.Webcam, { target: Uppy.Dashboard });
+
+uppy.on('file-added', (file) => {
+  if(file.meta.name !== "Apple Music Play Activity.csv") {
+    alert('asdf');
+  } else {
+    document.getElementById("fileUpload").style.display = "none";
+    console.log(file);
+  }
+})
