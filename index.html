@@ -14,9 +14,6 @@
     <link rel="shortcut icon" sizes="196x196" href="favicon.ico">
     <link rel="apple-touch-icon" href="favicon.ico">
 
-    <!-- Uppy File Uploader -->
-    <link rel="stylesheet" href="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.css">
-
     <!-- Bootstrap Grid -->
     <link rel="stylesheet" href="assets/third-party/bootstrap-grid-24.css"/>
 
@@ -118,7 +115,7 @@
       <div id="upload-container" class="hidden">
         <div class="row">
           <div class="col-xs-24">
-            <h1 class="btn-back" id="upload-back-btn"><i class="fas fa-chevron-left"></i> Back</h1>
+            <h2 class="btn-back" id="upload-back-btn"><i class="fas fa-chevron-left"></i> Back</h2>
           </div>
         </div>
         <div class="row">
@@ -127,7 +124,17 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-24 col-md-offset-4 col-md-16" id="fileUpload"></div>
+          <div class="col-xs-24 col-md-offset-4 col-md-16">
+            <div class="file-upload-container" id="upload-input-zone">
+              <div class="file-upload-content text-center">
+                <h2>Drag & Drop <br> <span class="text-pink">Apple Play Music Activity.csv</span> <br> here or browse to find it.</h2>
+                <div class="file-upload-icon">
+                  <i class="fas fa-upload fa-2x"></i>
+                  <p>My Device</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="col-xs-24 col-md-offset-4 col-md-16">
             <p>Save file for future use. Possibly add tool tip with full information about everything if you know what I mean.</p>
             <input type="checkbox" name="save-file" value="" id="save-file">
@@ -141,7 +148,7 @@
       <div id="how-to-container" class="hidden">
         <div class="row mb-2">
           <div class="col-xs-24">
-            <h1 class="btn-back" id="how-to-back-btn"><i class="fas fa-chevron-left"></i> Back</h1>
+            <h2 class="btn-back" id="how-to-back-btn"><i class="fas fa-chevron-left"></i> Back</h2>
           </div>
         </div>
         <div class="row mb-2">
@@ -218,12 +225,6 @@
 
     <!-- Chart JS -->
     <script type="text/javascript" src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
-
-    <!-- Uppy File Uploader -->
-    <script type="text/javascript" src="https://transloadit.edgly.net/releases/uppy/v0.30.2/uppy.min.js"></script>
-
-    <!-- File Upload -->
-    <script type="text/javascript" src="assets/js/fileupload.js"></script>
 
     <!-- App Functionality -->
     <script type="text/javascript" src="assets/js/app.js"></script>

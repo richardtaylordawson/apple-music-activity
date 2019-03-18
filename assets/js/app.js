@@ -36,16 +36,17 @@ class App {
 
     this.uploadScreen = {
       "upload-container": document.getElementById("upload-container"),
-      "upload-back-btn": document.getElementById("upload-back-btn")
+      "upload-back-btn": document.getElementById("upload-back-btn"),
+      "upload-input-zone": document.getElementById("upload-input-zone")
     }
 
-    this.initializeClickEvents();
+    this.initializeEvents();
   }
 
   /**
-   * Initializes the app's click events
+   * Initializes the app's click & other events
    */
-  initializeClickEvents() {
+  initializeEvents() {
     this.comingSoon["close-modal-btn"].addEventListener("click", () => this.hideElement(this.comingSoon.modal));
 
     this.navContainer["hamburger-menu-btn"].addEventListener("click", () => this.showElement(this.comingSoon.modal));
@@ -64,6 +65,14 @@ class App {
 
     this.uploadScreen["upload-back-btn"].addEventListener("click", () => {
       this.transitionToHomeContainer(this.uploadScreen["upload-container"]);
+    });
+
+    this.uploadScreen["upload-input-zone"].addEventListener("dragover", () => {
+      this.uploadScreen["upload-input-zone"].classList.add("on-file-drag");
+    });
+
+    this.uploadScreen["upload-input-zone"].addEventListener("dragleave", () => {
+      this.uploadScreen["upload-input-zone"].classList.remove("on-file-drag");
     });
   }
 
