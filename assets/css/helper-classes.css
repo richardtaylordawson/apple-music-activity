@@ -1,8 +1,10 @@
 /* Display Classes */
 .hidden { display: none; }
+.display-inline { display: inline; }
 
 /* Border Classes */
 .border-bottom { border-bottom: 1px solid white; }
+.border-right { border-right: 1px solid white; }
 
 /* Margin Classes */
 .mb-1 { margin-bottom: 10px; }
