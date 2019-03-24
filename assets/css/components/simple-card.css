@@ -5,6 +5,10 @@
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.4);
 }
 
+.simple-card.collapse {
+  height: 100%;
+}
+
 .simple-card h2 {
   margin: 0;
 }
@@ -19,6 +23,19 @@
 
 .simple-card-body {
   padding: 20px 16px;
+}
+
+.simple-card .fa-minus,
+.simple-card .fa-plus {
+  cursor: pointer;
+}
+
+.simple-card .fa-minus:hover {
+  color: #fa57c1;
+}
+
+.simple-card .fa-plus:hover {
+  color: #fa57c1;
 }
 
 /* Medium Adjustments */
