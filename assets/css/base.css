@@ -1,11 +1,13 @@
 @font-face { font-family: SF-Bold; src: url('./../fonts/SF-Compact-Rounded-Bold.otf'); }
 @font-face { font-family: SF-Regular; src: url('./../fonts/SF-Compact-Rounded-Regular.otf'); }
 
+html { height: 100%; }
+
 body {
-  padding: 0px 50px;
   font-family: SF-Regular;
   background-image: linear-gradient(to right, #fa57c1, #b166cc, #7572ff, #69a6f9);
   color: white;
+  height: 100%;
 }
 
 /* Start of elements */
@@ -28,16 +30,13 @@ img {
   height: auto;
 }
 
-/* Tablet Adjustments */
-@media (max-width: 768px) {
-  body {
-    padding: 0 25px;
-  }
+/* Page content excluding footer */
+.page-content {
+  min-height: 100%;
+  margin-bottom: -40px; /* Brings footer up */
 }
 
-/* Mobile Adjustments */
-@media (max-width: 425px) {
-  body {
-    padding: 0;
-  }
+#footer-container,
+.page-content::after {
+  height: 40px;
 }

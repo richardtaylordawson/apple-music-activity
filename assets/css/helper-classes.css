@@ -4,12 +4,13 @@
 
 /* Border Classes */
 .border-bottom { border-bottom: 1px solid white; }
-.border-right { border-right: 1px solid white; }
+.border-right { border-right: 1px solid rgb(128, 128, 128); }
 
 /* Margin Classes */
 .mb-1 { margin-bottom: 10px; }
 .mb-2 { margin-bottom: 20px; }
 .mr-2 { margin-right: 20px; }
+.mr-7 { margin-right: 70px; }
 .mt-1 { margin-top: 10px; }
 
 /* Text Classes */

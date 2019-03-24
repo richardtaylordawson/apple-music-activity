@@ -17,7 +17,7 @@ input[type="checkbox"] {
 .ios-toggle i {
 	box-sizing: border-box;
 	display: block;
-	background: #fa57c1;
+	background: #dddddd;
 }
 
 .ios-toggle label {

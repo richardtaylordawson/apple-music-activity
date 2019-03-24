@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container page-content">
       <div id="nav-container">
         <div class="row border-bottom">
           <div class="col-xs-18 col-sm-12">
@@ -71,13 +71,13 @@
       <div id="home-container">
         <div class="row">
           <div class="col-xs-24">
-            <h4> Music Activity takes your Apple Music data, analyzes it and displays reports showing your listening history. Your data is not stored or shared in anyway unless you use the sharing features provided by this application. If you have any questions please feel free to reach me at <a href="mailto:richardtaylordawson@gmail.com">richard.taylor.dawson@gmail.com</a>.</h4>
+            <h4> Music Activity takes your Apple Music data, analyzes it and displays reports showing your listening history. Your data is not stored or shared in anyway unless you use the sharing features provided by this application. If you have any questions please feel free to <a href="mailto:richardtaylordawson@gmail.com?subject=Apple Music Activity">email me</a>.</h4>
             <h1>Get Started</h1>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-24 col-sm-8">
-            <div class="option-card" id="get-started-card">
+            <div class="option-card mb-2" id="get-started-card">
               <div class="option-card-image bg get-started-bg"></div>
               <div class="option-card-body">
                 <p class="emoji">🤓</p>
@@ -88,7 +88,7 @@
             </div>
           </div>
           <div class="col-xs-24 col-sm-8">
-            <div class="option-card" id="how-to-card">
+            <div class="option-card mb-2" id="how-to-card">
               <div class="option-card-image bg how-to-copy-of-data-bg"></div>
               <div class="option-card-body">
                 <p class="emoji">🤔</p>
@@ -99,7 +99,7 @@
             </div>
           </div>
           <div class="col-xs-24 col-sm-8">
-            <div class="option-card" id="check-demo-card">
+            <div class="option-card mb-2" id="check-demo-card">
               <div class="option-card-image bg check-demo-bg"></div>
               <div class="option-card-body">
                 <p class="emoji">🤪</p>
@@ -120,11 +120,6 @@
         </div>
         <div class="row">
           <div class="col-xs-24 col-md-offset-4 col-md-16">
-            <h3>Get started by uploading your file. Your data is stored only on your browser and no where else.</h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-24 col-md-offset-4 col-md-16">
             <div class="file-upload-container" id="upload-input-zone">
               <div class="file-upload-content text-center">
                 <h2>Drag & Drop <br> <span class="text-pink">Apple Play Music Activity.csv</span> <br> here or browse to find it.</h2>
@@ -136,14 +131,19 @@
               </div>
             </div>
           </div>
+        </div>
+        <!-- Commenting out for now until I can build the functionality -->
+        <!-- <div class="row">
           <div class="col-xs-24 col-md-offset-4 col-md-16">
-            <p>Save file for future use. Possibly add tool tip with full information about everything if you know what I mean.</p>
-            <input type="checkbox" name="save-file" value="" id="save-file">
-            <div class="ios-toggle">
-              <label for="save-file"><i></i></label>
+            <div class="pull-right">
+              <p class="mr-7">Save file for future use. <span class="text-small">*Your file will be stored in your browser and not shared in anyway.</span></p>
+              <input type="checkbox" name="save-file" value="" id="save-file">
+              <div class="ios-toggle">
+                <label for="save-file"><i></i></label>
+              </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div id="how-to-container" class="hidden">
@@ -289,14 +289,14 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div id="footer-container">
-        <div class="col-xs-24">
-          <p class="text-small text-center" style="margin-top: 100px;">
-            Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>.
-            Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/apple-music-activity/issues" target="_blank">Let me know</a> 🤙
-          </p>
-        </div>
+    <div id="footer-container">
+      <div class="col-xs-24">
+        <p class="text-small text-center">
+          Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>.
+          Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/apple-music-activity/issues" target="_blank">Let me know</a> 🤙
+        </p>
       </div>
     </div>
 
