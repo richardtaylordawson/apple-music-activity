@@ -9,8 +9,7 @@ class AppleMusicActivity {
    */
   constructor() {
     this.comingSoon = {
-      "modal": document.getElementById("coming-soon-modal"),
-      "close-modal-btn": document.getElementById("close-modal-btn")
+      "modal": document.getElementById("coming-soon-modal")
     }
 
     this.navContainer = {
@@ -29,11 +28,6 @@ class AppleMusicActivity {
       "transition-interval": "" // Used when transitioning between screens
     }
 
-    this.howToScreen = {
-      "how-to-container": document.getElementById("how-to-container"),
-      "how-to-back-btn": document.getElementById("how-to-back-btn")
-    }
-
     this.uploadScreen = {
       "upload-container": document.getElementById("upload-container"),
       "upload-back-btn": document.getElementById("upload-back-btn"),
@@ -41,14 +35,30 @@ class AppleMusicActivity {
       "upload-icon-btn": document.getElementById("upload-icon-btn"),
       "hidden-file-input": document.getElementById("hidden-file-input"),
       "loading-icon": document.getElementById("loading-icon"),
-      "file-upload-content": document.getElementById("file-upload-content")
+      "file-upload-content": document.getElementById("file-upload-content"),
+      "wrong-file-modal": document.getElementById("wrong-file-modal")
+    }
+
+    this.howToScreen = {
+      "how-to-container": document.getElementById("how-to-container"),
+      "how-to-back-btn": document.getElementById("how-to-back-btn")
+    }
+
+    this.demoScreen = {
+      "demo-container": document.getElementById("demo-container")
     }
 
     this.resultsScreen = {
       "results-container": document.getElementById("results-container"),
       "results-btn-back": document.getElementById("results-btn-back"),
       "accordion-minus": [...document.getElementsByClassName("fa-minus")],
-      "accordion-plus": [...document.getElementsByClassName("fa-plus")]
+      "accordion-plus": [...document.getElementsByClassName("fa-plus")],
+      "total-time-listening": document.getElementById("total-time-listening"),
+      "total-plays": document.getElementById("total-plays"),
+      "original-songs": document.getElementById("original-songs"),
+      "original-artists": document.getElementById("original-artists"),
+      "view-lyrics": document.getElementById("view-lyrics"),
+      "demo-message": document.getElementById("demo-message")
     }
 
     // Data that will come from the uploaded file
@@ -64,9 +74,6 @@ class AppleMusicActivity {
    * Initializes the app's click & other events
    */
   initializeEvents() {
-    // Coming Soon Modal
-    this.comingSoon["close-modal-btn"].addEventListener("click", () => this.hideElement(this.comingSoon.modal));
-
     // Navigation
     this.navContainer["hamburger-menu-btn"].addEventListener("click", () => this.showElement(this.comingSoon.modal));
     this.navContainer["instagram-btn"].addEventListener("click", () => this.showElement(this.comingSoon.modal));
@@ -75,9 +82,9 @@ class AppleMusicActivity {
     this.navContainer["snapchat-btn"].addEventListener("click", () => this.showElement(this.comingSoon.modal));
 
     // Home Screen
-    this.homeScreen["how-to-card"].addEventListener("click", () => this.transitionToHowToContainer());
-    this.homeScreen["check-demo-card"].addEventListener("click", () => this.showElement(this.comingSoon.modal));
     this.homeScreen["get-started-card"].addEventListener("click", () => this.transitionToUploadContainer());
+    this.homeScreen["how-to-card"].addEventListener("click", () => this.transitionToHowToContainer());
+    this.homeScreen["check-demo-card"].addEventListener("click", () => this.transitionToDemoContainer());
 
     // How To Screen
     this.howToScreen["how-to-back-btn"].addEventListener("click", () => {
@@ -96,20 +103,16 @@ class AppleMusicActivity {
     this.uploadScreen["hidden-file-input"].addEventListener("change", () => this.readFileInput());
 
     // Results Screen
-    this.resultsScreen["accordion-minus"].map(item => {
-      item.addEventListener("click", e => {
-        this.toggleAccordion(e, true);
-      });
-    });
-
-    this.resultsScreen["accordion-plus"].map(item => {
-      item.addEventListener("click", e => {
-        this.toggleAccordion(e, false);
-      });
-    });
+    this.resultsScreen["accordion-minus"].map(item => { item.addEventListener("click", e => this.toggleAccordion(e, true)); });
+    this.resultsScreen["accordion-plus"].map(item => { item.addEventListener("click", e => this.toggleAccordion(e, false)); });
 
     this.resultsScreen["results-btn-back"].addEventListener("click", () => {
       this.transitionToHomeContainer(this.resultsScreen["results-container"]);
+    });
+
+    // Modal Close
+    [...document.getElementsByClassName("close-modal-btn")].map(item => {
+      item.addEventListener("click", e => this.hideElement(e.target.parentElement.parentElement.parentElement.parentElement));
     });
   }
 
@@ -122,13 +125,6 @@ class AppleMusicActivity {
   }
 
   /**
-   * Transitions the app from the home screen to the how to screen
-   */
-  transitionToHowToContainer() {
-    this.hideElement(this.homeScreen["home-container"], true, this.howToScreen["how-to-container"]);
-  }
-
-  /**
    * Transitions the app from the home screen to the upload screen
    */
   transitionToUploadContainer() {
@@ -136,10 +132,34 @@ class AppleMusicActivity {
   }
 
   /**
-   * Transitions the app from the upload screen to the results screen
+   * Transitions the app from the home screen to the how to screen
    */
-  transitionToResultsContainer() {
-    this.hideElement(this.uploadScreen["upload-container"], true, this.resultsScreen["results-container"], true);
+  transitionToHowToContainer() {
+    this.hideElement(this.homeScreen["home-container"], true, this.howToScreen["how-to-container"]);
+  }
+
+  /**
+   * Transitions the app from the home screen to the demo loader
+   */
+  transitionToDemoContainer() {
+    this.hideElement(this.homeScreen["home-container"], true, this.demoScreen["demo-container"]);
+    this.startDemo();
+  }
+
+  /**
+   * Transitions the app from the upload screen to the results screen
+   * @param {bool} demo - tells whether to display the demo or normal results
+   */
+  transitionToResultsContainer(demo) {
+    const element = (demo)
+      ? this.demoScreen["demo-container"]
+      : this.uploadScreen["upload-container"];
+
+    (demo)
+      ? this.showElement(this.resultsScreen["demo-message"])
+      : this.hideElement(this.resultsScreen["demo-message"]);
+
+    this.hideElement(element, true, this.resultsScreen["results-container"], true);
   }
 
   /**
@@ -204,23 +224,43 @@ class AppleMusicActivity {
    * @param {file} file - file to analyze. Default is file from hidden HTMl input
    */
   readFileInput(file = this.uploadScreen["hidden-file-input"].files[0]) {
-    this.startLoading();
+    if(file.name.includes("Apple Music Play Activity.csv")) {
+      this.startLoading();
 
-    const reader = new FileReader();
+      const reader = new FileReader();
 
-    reader.onload = () => {
-      this.musicData = this.convertCSVToJSON(reader.result);
-      this.calculateData();
-    };
+      reader.onload = () => {
+        this.musicData = this.convertCSVToJSON(reader.result);
+        this.calculateData();
+      };
 
-    reader.readAsText(file);
+      reader.readAsText(file);
+    } else {
+      this.showElement(this.uploadScreen["wrong-file-modal"]);
+    }
   }
 
+  startDemo() {
+    setTimeout(() => {
+      this.resultsScreen["original-songs"].innerText = "2,343";
+      this.resultsScreen["original-artists"].innerText = "743";
+      this.resultsScreen["total-plays"].innerText = "19,152";
+      this.resultsScreen["view-lyrics"].innerText = "513";
+      this.transitionToResultsContainer(true);
+    }, 1000);
+  }
+
+  /**
+   * Show loading using Apple beach ball
+   */
   startLoading() {
     this.uploadScreen["loading-icon"].classList.remove("hidden");
     this.uploadScreen["file-upload-content"].classList.add("hidden");
   }
 
+  /**
+   * Stop Apple beach ball loading
+   */
   stopLoading() {
     this.uploadScreen["loading-icon"].classList.add("hidden");
     this.uploadScreen["file-upload-content"].classList.remove("hidden");
@@ -272,36 +312,22 @@ class AppleMusicActivity {
   }
 
   calculateData() {
-    this.calculatedData = this.musicData.reduce((acc, item) => {
-      // List of things that can be used
-      /*
-      * Event Start Timestamp
-      * Event End Timestamp
-      * Song Name
-      * Artist Name
-      * Container Name (Album)
-      * Event Received Timestamp
-      * Play Duration Milliseconds
-      * Media Duration In Milliseconds
-      * End Position In Milliseconds
-      * End Reason Type
-      *   TYPES:
-      * Feature Name
-      *   TYPES:
-      * Media Type
-      *   TYPES:
-      *
-      */
+    let totalLyrics = 0;
+    let totalDuration = 0;
 
+    this.calculatedData = this.musicData.reduce((acc, item) => {
       const song = item["Song Name"];
       const artist = item["Artist Name"];
       const endReasonType = item["End Reason Type"];
       const appleMusic = item["Apple Music Subscription"];
       const buildVersion = item["Build Version"];
-
-      console.log(item);
+      const mediaType = item["Media Type"];
+      const eventType = item["Event Type"];
+      const playDuration = item["Play Duration Milliseconds"];
 
       if(song !== "") {
+        totalDuration += playDuration;
+
         (acc.songs.hasOwnProperty(song))
           ? acc.songs[song]++
           : acc.songs[song] = 1;
@@ -321,6 +347,14 @@ class AppleMusicActivity {
         (acc.buildVersion.hasOwnProperty(buildVersion))
           ? acc.buildVersion[buildVersion]++
           : acc.buildVersion[buildVersion] = 1;
+
+        (acc.mediaType.hasOwnProperty(mediaType))
+          ? acc.mediaType[mediaType]++
+          : acc.mediaType[mediaType] = 1;
+
+        if(eventType === "LYRIC_DISPLAY") {
+          totalLyrics++;
+        }
       }
 
       acc.totalSongs++;
@@ -332,23 +366,34 @@ class AppleMusicActivity {
       appleMusic: {},
       songs: {},
       artists: {},
-      buildVersion: {}
+      buildVersion: {},
+      mediaType: {}
     });
 
-    console.log(this.calculatedData);
+    const songs = Object.entries(this.calculatedData.songs);
+    const artists = Object.entries(this.calculatedData.artists);
 
-    // const entries = Object.entries(test["individual-songs"]);
+    const totalOriginalSongs = songs.length;
+    const totalOriginalArtists = artists.length;
 
-    // let highest = 0;
-    // let highestName = "";
-    // entries.map(currentSong => {
-    //   if(currentSong[1] > highest) {
-    //     highest = currentSong[1];
-    //     highestName = currentSong[0];
-    //   }
-    // });
+    this.resultsScreen["original-songs"].innerText = totalOriginalSongs;
+    this.resultsScreen["original-artists"].innerText = totalOriginalArtists;
 
-    this.transitionToResultsContainer();
+    let highest = 0;
+    let highestName = "";
+    let totalPlays = 0;
+    songs.map(currentSong => {
+      if(currentSong[1] > highest) {
+        highest = currentSong[1];
+        highestName = currentSong[0];
+      }
+      totalPlays += currentSong[1];
+    });
+
+    this.resultsScreen["total-plays"].innerText = totalPlays;
+    this.resultsScreen["view-lyrics"].innerText = totalLyrics;
+
+    this.transitionToResultsContainer(false);
   }
 }
 

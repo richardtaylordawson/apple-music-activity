@@ -7,6 +7,10 @@
   -webkit-animation: rotating 1.5s linear infinite;
 }
 
+.loader.demo img {
+  top: 25%;
+}
+
 @-webkit-keyframes rotating {
   from {
     -webkit-transform: rotate(0deg);
