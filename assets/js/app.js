@@ -26,7 +26,7 @@ class AppleMusicActivity {
       "how-to-card": document.getElementById("how-to-card"),
       "check-demo-card": document.getElementById("check-demo-card"),
       "get-started-card": document.getElementById("get-started-card"),
-      "transition-interval": ""
+      "transition-interval": "" // Used when transitioning between screens
     }
 
     this.howToScreen = {
@@ -39,15 +39,22 @@ class AppleMusicActivity {
       "upload-back-btn": document.getElementById("upload-back-btn"),
       "upload-input-zone": document.getElementById("upload-input-zone"),
       "upload-icon-btn": document.getElementById("upload-icon-btn"),
-      "hidden-file-input": document.getElementById("hidden-file-input")
+      "hidden-file-input": document.getElementById("hidden-file-input"),
+      "loading-icon": document.getElementById("loading-icon"),
+      "file-upload-content": document.getElementById("file-upload-content")
     }
 
     this.resultsScreen = {
       "results-container": document.getElementById("results-container"),
-      "results-btn-back": document.getElementById("results-btn-back")
+      "results-btn-back": document.getElementById("results-btn-back"),
+      "accordion-minus": [...document.getElementsByClassName("fa-minus")],
+      "accordion-plus": [...document.getElementsByClassName("fa-plus")]
     }
 
+    // Data that will come from the uploaded file
     this.musicData = [];
+
+    // Data after running through and calculating everything
     this.calculatedData = {};
 
     this.initializeEvents();
@@ -82,25 +89,20 @@ class AppleMusicActivity {
       this.transitionToHomeContainer(this.uploadScreen["upload-container"]);
     });
 
-    this.uploadScreen["upload-input-zone"].addEventListener("dragover", () => {
-      this.uploadScreen["upload-input-zone"].classList.add("on-file-drag");
-    });
-
-    this.uploadScreen["upload-icon-btn"].addEventListener("click", () => {
-      // Toggle hidden input to upload file
-      this.uploadScreen["hidden-file-input"].click();
-    });
-
+    this.uploadScreen["upload-input-zone"].addEventListener("dragover", e => this.handleDragAndDrop(e, true, false));
+    this.uploadScreen["upload-input-zone"].addEventListener("dragleave", e => this.handleDragAndDrop(e, false, false));
+    this.uploadScreen["upload-input-zone"].addEventListener("drop", e => this.handleDragAndDrop(e, false, true));
+    this.uploadScreen["upload-icon-btn"].addEventListener("click", () => this.uploadScreen["hidden-file-input"].click());
     this.uploadScreen["hidden-file-input"].addEventListener("change", () => this.readFileInput());
 
     // Results Screen
-    [...document.getElementsByClassName("fa-minus")].map(item => {
+    this.resultsScreen["accordion-minus"].map(item => {
       item.addEventListener("click", e => {
         this.toggleAccordion(e, true);
       });
     });
 
-    [...document.getElementsByClassName("fa-plus")].map(item => {
+    this.resultsScreen["accordion-plus"].map(item => {
       item.addEventListener("click", e => {
         this.toggleAccordion(e, false);
       });
@@ -137,15 +139,17 @@ class AppleMusicActivity {
    * Transitions the app from the upload screen to the results screen
    */
   transitionToResultsContainer() {
-    this.hideElement(this.uploadScreen["upload-container"], true, this.resultsScreen["results-container"]);
+    this.hideElement(this.uploadScreen["upload-container"], true, this.resultsScreen["results-container"], true);
   }
 
   /**
    * Hide's the passed in element with the option of a transition effect
    * @param {element} element - DOM object that will be hidden
    * @param {bool} animate - Tells function whether or not to animate the hiding
+   * @param {element} afterAnimationElement - element to show after animation
+   * @param {bool} stopLoading - calls stopLoading for the file input
    */
-  hideElement(element, animate = false, afterAnimationElement) {
+  hideElement(element, animate = false, afterAnimationElement, stopLoading = false) {
     if(animate) {
       this.homeScreen["transition-interval"] = setInterval(() => {
         (element.style.opacity === "")
@@ -156,6 +160,10 @@ class AppleMusicActivity {
           clearInterval(this.homeScreen["transition-interval"]);
           element.classList.add("hidden");
           this.showElement(afterAnimationElement);
+
+          if(stopLoading) {
+            this.stopLoading();
+          }
         }
       }, 1);
     } else {
@@ -173,9 +181,31 @@ class AppleMusicActivity {
   }
 
   /**
-   * Read in file input and start the
+   * Handles a drag and drop event accordingly
+   * @param {object} e - event fired from dragover, dragleave or drop
+   * @param {bool} add - adds or removes class showing dragover
+   * @param {bool} dropped - true if the file was dropped by the user
    */
-  readFileInput() {
+  handleDragAndDrop(e, add, dropped) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    (add)
+      ? this.uploadScreen["upload-input-zone"].classList.add("on-file-drag")
+      : this.uploadScreen["upload-input-zone"].classList.remove("on-file-drag");
+
+    if(dropped) {
+      this.readFileInput(e.dataTransfer.files[0]);
+    }
+  }
+
+  /**
+   * Read in file input and start the
+   * @param {file} file - file to analyze. Default is file from hidden HTMl input
+   */
+  readFileInput(file = this.uploadScreen["hidden-file-input"].files[0]) {
+    this.startLoading();
+
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -183,7 +213,17 @@ class AppleMusicActivity {
       this.calculateData();
     };
 
-    reader.readAsText(this.uploadScreen["hidden-file-input"].files[0]);
+    reader.readAsText(file);
+  }
+
+  startLoading() {
+    this.uploadScreen["loading-icon"].classList.remove("hidden");
+    this.uploadScreen["file-upload-content"].classList.add("hidden");
+  }
+
+  stopLoading() {
+    this.uploadScreen["loading-icon"].classList.add("hidden");
+    this.uploadScreen["file-upload-content"].classList.remove("hidden");
   }
 
   /**
