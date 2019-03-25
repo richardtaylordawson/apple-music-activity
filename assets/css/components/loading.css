@@ -1,0 +1,17 @@
+.loader img {
+  height: 75px;
+  width: 75px;
+  position: absolute;
+  left: 50%;
+  margin-left: -37.5px;
+  -webkit-animation: rotating 1.5s linear infinite;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg);
+  }
+}
