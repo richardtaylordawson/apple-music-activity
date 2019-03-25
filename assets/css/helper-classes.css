@@ -32,8 +32,9 @@
 .how-to-login-page-bg { background-image: url('./../images/how-to-login-page.png'); }
 .how-to-manage-your-data-bg { background-image: url('./../images/how-to-manage-your-data.png'); }
 .how-to-max-file-size-bg { background-image: url('./../images/how-to-max-file-size.png'); }
+.get-started-bg { background-image: url('https://via.placeholder.com/350x350'); }
+.how-to-bg { background-image: url('https://via.placeholder.com/350x350'); }
 .check-demo-bg { background-image: url('https://via.placeholder.com/350x350'); }
-.get-started-bg { background-image: url('./../images/get-started.png'); }
 
 .bg {
   background-size: cover;
