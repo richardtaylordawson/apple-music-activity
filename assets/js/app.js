@@ -176,7 +176,7 @@ class AppleMusicActivity {
           ? element.style.opacity = "1"
           : element.style.opacity -= "0.01";
 
-        if (element.style.opacity == "0") {
+        if (element.style.opacity <= "0") {
           clearInterval(this.homeScreen["transition-interval"]);
           element.classList.add("hidden");
           this.showElement(afterAnimationElement);
