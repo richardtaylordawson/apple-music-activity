@@ -12,9 +12,11 @@
 .mr-2 { margin-right: 20px; }
 .mr-7 { margin-right: 70px; }
 .mt-1 { margin-top: 10px; }
+.collapse-bottom { margin-bottom: 0; }
 
 /* Text Classes */
-.text-small { font-size: 10px; }
+.text-small { font-size: 10px; line-height: 0; }
+.text-extra-small { font-size: 5px; line-height: 0; }
 .text-center { text-align: center; }
 .text-pink { color: #fa57c1; }
 .text-dark-pink { color: #b166cc; }
@@ -32,12 +34,18 @@
 .how-to-login-page-bg { background-image: url('./../images/how-to-login-page.png'); }
 .how-to-manage-your-data-bg { background-image: url('./../images/how-to-manage-your-data.png'); }
 .how-to-max-file-size-bg { background-image: url('./../images/how-to-max-file-size.png'); }
-.get-started-bg { background-image: url('https://via.placeholder.com/350x350'); }
-.how-to-bg { background-image: url('https://via.placeholder.com/350x350'); }
-.check-demo-bg { background-image: url('https://via.placeholder.com/350x350'); }
+.get-started-bg { background-image: url('./../images/get-started-bg.svg'); }
+.how-to-bg { background-image: url('./../images/how-to-bg.svg'); }
+.check-demo-bg { background-image: url('./../images/check-demo-bg.svg'); }
 
 .bg {
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bg-half {
+  background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
 }

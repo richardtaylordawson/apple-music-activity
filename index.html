@@ -94,7 +94,7 @@
         <div class="row">
           <div class="col-xs-24 col-sm-8">
             <div class="option-card mb-2" id="get-started-card">
-              <div class="option-card-image bg get-started-bg"></div>
+              <div class="option-card-image bg-half get-started-bg"></div>
               <div class="option-card-body">
                 <p class="emoji">🤓</p>
               </div>
@@ -105,7 +105,7 @@
           </div>
           <div class="col-xs-24 col-sm-8">
             <div class="option-card mb-2" id="how-to-card">
-              <div class="option-card-image bg how-to-bg"></div>
+              <div class="option-card-image bg-half how-to-bg"></div>
               <div class="option-card-body">
                 <p class="emoji">🤔</p>
               </div>
@@ -116,7 +116,7 @@
           </div>
           <div class="col-xs-24 col-sm-8">
             <div class="option-card mb-2" id="check-demo-card">
-              <div class="option-card-image bg check-demo-bg"></div>
+              <div class="option-card-image bg-half check-demo-bg"></div>
               <div class="option-card-body">
                 <p class="emoji">🤪</p>
               </div>
@@ -136,10 +136,11 @@
         </div>
         <div class="row">
           <div class="col-xs-24 col-md-offset-4 col-md-16">
+            <div class="loader hidden" id="loading-icon">
+              <img src="assets/images/loader.png"/>
+              <h1 class="text-center">Analyzing your file...</h1>
+            </div>
             <div class="file-upload-container" id="upload-input-zone">
-              <div class="loader hidden" id="loading-icon">
-                <img src="assets/images/loader.png"/>
-              </div>
               <div class="file-upload-content text-center" id="file-upload-content">
                 <h2>Drag & Drop <br> <span class="text-pink">Apple Play Music Activity.csv</span> <br> here or browse to find it.</h2>
                 <div class="file-upload-icon" id="upload-icon-btn">
@@ -178,7 +179,7 @@
                 <h2>Step 1</h2>
               </div>
               <div class="simple-card-body">
-                <h2>Go to www.appleprivacy.com and login using your Apple ID & password.</h2>
+                <h2>Go to <a href="https://privacy.apple.com/">privacy.apple.com</a> and login using your Apple ID & password.</h2>
               </div>
             </div>
           </div>
@@ -236,6 +237,7 @@
       <div id="demo-container" class="hidden">
         <div class="loader demo" id="loading-icon">
           <img src="assets/images/loader.png"/>
+          <h1 class="text-center">Creating demo...</h1>
         </div>
       </div>
 
@@ -302,10 +304,10 @@
 
     <div id="footer-container">
       <div class="col-xs-24">
-        <p class="text-small text-center">
-          Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>.
-          Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/apple-music-activity/issues" target="_blank">Let me know</a> 🤙
-        </p>
+        <div class="text-center" id="footer-body">
+          <p class="text-small collapse-bottom">Made by <a href="https://github.com/richardtaylordawson" target="_blank">richardtaylordawson</a>. Have suggestions or find an issue? <a href="https://github.com/richardtaylordawson/apple-music-activity/issues" target="_blank">Let me know</a> 🤙</p>
+          <a class="text-extra-small" href="https://vecteezy.com">Free Vector Graphics by Vecteezy.com</a>
+        </div>
       </div>
     </div>
 
