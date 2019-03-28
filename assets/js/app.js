@@ -255,7 +255,7 @@ class AppleMusicActivity {
    */
   startLoading() {
     this.uploadScreen["loading-icon"].classList.remove("hidden");
-    this.uploadScreen["file-upload-content"].classList.add("hidden");
+    this.uploadScreen["upload-input-zone"].classList.add("hidden");
   }
 
   /**
@@ -263,7 +263,7 @@ class AppleMusicActivity {
    */
   stopLoading() {
     this.uploadScreen["loading-icon"].classList.add("hidden");
-    this.uploadScreen["file-upload-content"].classList.remove("hidden");
+    this.uploadScreen["upload-input-zone"].classList.remove("hidden");
   }
 
   /**

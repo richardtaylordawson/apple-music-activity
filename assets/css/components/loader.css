@@ -3,12 +3,17 @@
   width: 75px;
   position: absolute;
   left: 50%;
+  top: 25%;
   margin-left: -37.5px;
   -webkit-animation: rotating 1.5s linear infinite;
 }
 
-.loader.demo img {
-  top: 25%;
+.loader h1 {
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  margin-left: -250px;
 }
 
 @-webkit-keyframes rotating {
