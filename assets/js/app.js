@@ -61,6 +61,11 @@ class AppleMusicActivity {
       "demo-message": document.getElementById("demo-message")
     }
 
+    this.topScroll = {
+      "top-scroll-container": document.getElementById("top-scroll-container"),
+      "top-scroll-interval": ""
+    }
+
     // Data that will come from the uploaded file
     this.musicData = [];
 
@@ -114,6 +119,10 @@ class AppleMusicActivity {
     [...document.getElementsByClassName("close-modal-btn")].map(item => {
       item.addEventListener("click", e => this.hideElement(e.target.parentElement.parentElement.parentElement.parentElement));
     });
+
+    // Top Scroll Element
+    document.addEventListener("scroll", () => this.handleScroll());
+    this.topScroll["top-scroll-container"].addEventListener("click", () => this.scrollToTop());
   }
 
   /**
@@ -160,6 +169,29 @@ class AppleMusicActivity {
       : this.hideElement(this.resultsScreen["demo-message"]);
 
     this.hideElement(element, true, this.resultsScreen["results-container"], true);
+  }
+
+  /**
+   * Decides whether or not to show the scroll to top component
+   */
+  handleScroll() {
+    (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300)
+      ? this.topScroll["top-scroll-container"].classList.remove("hidden")
+      : this.topScroll["top-scroll-container"].classList.add("hidden");
+  }
+
+  /**
+   * Transitions the app from the current state to the top of the screen slowly/animated
+   */
+  scrollToTop() {
+    this.topScroll["top-scroll-interval"] = setInterval(() => {
+      document.body.scrollTop -= 10; // For Safari
+      document.documentElement.scrollTop -= 10; // For Chrome, Firefox, IE and Opera
+
+      if (document.body.scrollTop <= 0 && document.documentElement.scrollTop <= 0) {
+        clearInterval(this.topScroll["top-scroll-interval"]);
+      }
+    }, 1);
   }
 
   /**

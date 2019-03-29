@@ -2,6 +2,7 @@
 @import './helper-classes.css';
 @import './components/buttons.css';
 @import './components/modal.css';
+@import './components/top-scroll.css';
 @import './components/file-upload.css';
 @import './components/ios-toggle.css';
 @import './components/loader.css';
