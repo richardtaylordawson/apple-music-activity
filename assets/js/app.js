@@ -228,6 +228,7 @@ class AppleMusicActivity {
    * @param {element} element - DOM object that will be shown
    */
   showElement(element) {
+    this.scrollToTop();
     element.style.opacity = "1";
     element.classList.remove("hidden");
   }
