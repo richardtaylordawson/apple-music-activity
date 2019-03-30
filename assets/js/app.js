@@ -57,13 +57,16 @@ class AppleMusicActivity {
       "total-plays": document.getElementById("total-plays"),
       "original-songs": document.getElementById("original-songs"),
       "original-artists": document.getElementById("original-artists"),
-      "view-lyrics": document.getElementById("view-lyrics"),
-      "demo-message": document.getElementById("demo-message")
+      "view-lyrics": document.getElementById("view-lyrics")
     }
 
     this.topScroll = {
       "top-scroll-container": document.getElementById("top-scroll-container"),
       "top-scroll-interval": ""
+    }
+
+    this.charts = {
+      "end-reason-type": document.getElementById("end-reason-type")
     }
 
     // Data that will come from the uploaded file
@@ -164,9 +167,7 @@ class AppleMusicActivity {
       ? this.demoScreen["demo-container"]
       : this.uploadScreen["upload-container"];
 
-    (demo)
-      ? this.showElement(this.resultsScreen["demo-message"])
-      : this.hideElement(this.resultsScreen["demo-message"]);
+    // TODO Need to add something that shows a demo is being shown
 
     this.hideElement(element, true, this.resultsScreen["results-container"], true);
   }
@@ -344,6 +345,9 @@ class AppleMusicActivity {
     return result;
   }
 
+  /**
+   * Reduces the data down and calls the appropriate chart draw methods
+   */
   calculateData() {
     let totalLyrics = 0;
     let totalDuration = 0;
@@ -403,18 +407,23 @@ class AppleMusicActivity {
       mediaType: {}
     });
 
+    this.drawTotals();
+    this.drawEndReasonType();
+
+    this.transitionToResultsContainer(false);
+  }
+
+  /**
+   * Calculates and shows the totals for the top data set
+   */
+  drawTotals() {
     const songs = Object.entries(this.calculatedData.songs);
     const artists = Object.entries(this.calculatedData.artists);
-
-    const totalOriginalSongs = songs.length;
-    const totalOriginalArtists = artists.length;
-
-    this.resultsScreen["original-songs"].innerText = totalOriginalSongs;
-    this.resultsScreen["original-artists"].innerText = totalOriginalArtists;
 
     let highest = 0;
     let highestName = "";
     let totalPlays = 0;
+
     songs.map(currentSong => {
       if(currentSong[1] > highest) {
         highest = currentSong[1];
@@ -424,255 +433,48 @@ class AppleMusicActivity {
     });
 
     this.resultsScreen["total-plays"].innerText = totalPlays;
+    this.resultsScreen["original-songs"].innerText = songs.length;
+    this.resultsScreen["original-artists"].innerText = artists.length;
     this.resultsScreen["view-lyrics"].innerText = totalLyrics;
-
-    this.testChart();
-    this.testChart2();
-    this.testChart3();
-    this.testChart4();
-    this.testChart5();
-    this.testChart6();
-
-    this.transitionToResultsContainer(false);
   }
 
-  testChart() {
-    var ctx = document.getElementById('mychart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
+  /**
+   * Calculates and draws the End Reason Type chart
+   */
+  drawEndReasonType() {
+    const possibleEndReasonTypes = [
+      "FAILED_TO_LOAD",
+      "MANUALLY_SELECTED_PLAYBACK_OF_A_DIFF_ITEM",
+      "NATURAL_END_OF_TRACK",
+      "NOT_APPLICABLE",
+      "PLAYBACK_MANUALLY_PAUSED",
+      "QUICK_PLAY",
+      "SCRUB_BEGIN",
+      "SCRUB_END",
+      "TRACK_SKIPPED_BACKWARDS",
+      "TRACK_SKIPPED_FORWARDS"
+    ];
+
+    const endReasonTypes = Object.entries(this.calculatedData.endReasonType);
+
+    let labels = [];
+    let data = [];
+
+    const filteredTypes = endReasonTypes.filter(item => possibleEndReasonTypes.includes(item[0])).map((item, index) => {
+      const parts = item[0].split("_").join(" ");
+      const test = parts.charAt(0).toUpperCase() + parts.substring(1).toLowerCase();
+
+      labels.push(test);
+      data.push(item[1]);
     });
-  }
 
-  testChart2() {
-    var ctx = document.getElementById('mychart2').getContext('2d');
-    var myRadarChart = new Chart(ctx, {
+    new Chart(this.charts["end-reason-type"].getContext('2d'), {
       type: 'pie',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-      options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-    });
-  }
-
-  testChart3() {
-    var ctx = document.getElementById('mychart3').getContext('2d');
-    var myRadarChart = new Chart(ctx, {
-      type: 'bubble',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-      options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-    });
-  }
-
-  testChart4() {
-    var ctx = document.getElementById('mychart4').getContext('2d');
-    var myRadarChart = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-      options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-    });
-  }
-
-  testChart5() {
-    var ctx = document.getElementById('mychart5').getContext('2d');
-    var myRadarChart = new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-      options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-    });
-  }
-
-  testChart6() {
-    var ctx = document.getElementById('mychart6').getContext('2d');
-    var myRadarChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-      options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
+        labels: labels,
+        datasets: [{ data: data }]
+      },
+      options: { plugins: { colorschemes: { scheme: 'brewer.RdPu9' } } }
     });
   }
 }
