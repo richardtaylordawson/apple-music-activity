@@ -4,7 +4,8 @@
   "description": " Music Activity is an application that takes your Apple Music data provided by Apple and displays reports of your listening history. Built using Charts.js, Bootstrap, etc.",
   "homepage": "https://richardtaylordawson.github.io/apple-music-activity/",
   "dependencies": {
-    "chart.js": "^2.7.3"
+    "chart.js": "^2.7.3",
+    "chartjs-plugin-colorschemes": "^0.3.0"
   },
   "repository": {
     "type": "git",
