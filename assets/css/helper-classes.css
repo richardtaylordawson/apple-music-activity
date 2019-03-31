@@ -4,7 +4,6 @@
 
 /* Border Classes */
 .border-bottom { border-bottom: 1px solid white; }
-.border-right { border-right: 1px solid rgb(128, 128, 128); }
 
 /* Margin Classes */
 .mb-1 { margin-bottom: 10px; }
@@ -55,5 +54,11 @@
 @media (max-width: 991px) {
   .hide-on-tablet-down {
     display: none;
+  }
+}
+
+@media (min-width: 991px) {
+  .border-right-tablet-up {
+    border-right: 1px solid rgb(128, 128, 128);
   }
 }
