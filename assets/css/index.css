@@ -1,6 +1,7 @@
 @import './base.css';
 @import './helper-classes.css';
-@import './components/buttons.css';
+@import './components/button.css';
+@import './components/chart.css';
 @import './components/modal.css';
 @import './components/top-scroll.css';
 @import './components/file-upload.css';
