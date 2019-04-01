@@ -87,7 +87,7 @@
       <div id="home-container">
         <div class="row">
           <div class="col-xs-24">
-            <h4> Music Activity takes your Apple Music data, analyzes it and displays reports showing your listening history. Your data is not stored or shared in anyway unless you use the sharing features provided by this application. If you have any questions please feel free to <a href="mailto:richardtaylordawson@gmail.com?subject=Apple Music Activity">email me</a>.</h4>
+            <h4> Music Activity takes your Apple Music data, analyzes it and displays reports showing your listening history. Your data is not stored or shared in anyway unless you use the sharing features provided by this application.</h4>
             <h1>Get Started</h1>
           </div>
         </div>
@@ -251,12 +251,9 @@
             <h2 class="btn-back" id="results-btn-back"><i class="fas fa-chevron-left"></i> Back</h2>
           </div>
           <div class="col-xs-24 col-sm-12">
-            <div class="pull-right">
+            <div class="pull-right-tablet-up">
               <ul class="nav-pills">
-                <li class="nav-item mr-1 active">All Time</li>
-                <li class="nav-item mr-1">2019</li>
-                <li class="nav-item mr-1">2018</li>
-                <li class="nav-item">2017</li>
+                <li class="nav-item active">All Time</li>
               </ul>
             </div>
           </div>
@@ -264,7 +261,7 @@
         <div class="row mb-2">
           <div class="col-xs-24 col-md-24">
             <div class="simple-card collapse">
-              <div class="simple-card-header text-blue">
+              <div class="simple-card-header">
                 <h2 class="display-inline">Lifetime Totals</h2>
                 <div class="pull-right">
                   <span class="fa fa-minus fa-2x"></span>
@@ -273,34 +270,34 @@
               </div>
               <div class="simple-card-body">
                 <div class="row">
-                  <div class="col-xs-12 col-sm-8 col-md-6">
+                  <div class="col-xs-24 col-sm-8 col-md-6">
                     <div class="text-center">
                       <h3>Time Listening</h3>
-                      <h1 id="total-time-listening">A LOT 😳</h1>
+                      <h1 id="total-time-listening" class="text-dark-pink"></h1>
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-6">
-                    <div class="text-center border-right">
+                    <div class="text-center border-right-tablet-up">
                       <h3>Song Plays</h3>
-                      <h1 id="total-plays"></h1>
+                      <h1 id="total-plays" class="text-dark-pink"></h1>
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-4">
                     <div class="text-center">
                       <h3>Unique Songs</h3>
-                      <h1 id="original-songs"></h1>
+                      <h1 id="original-songs" class="text-pink"></h1>
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-4">
                     <div class="text-center">
                       <h3>Unique Artists</h3>
-                      <h1 id="original-artists"></h1>
+                      <h1 id="original-artists" class="text-pink"></h1>
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-4">
                     <div class="text-center">
                       <h3>Viewed Lyrics</h3>
-                      <h1 id="view-lyrics"></h1>
+                      <h1 id="view-lyrics" class="text-pink"></h1>
                     </div>
                   </div>
                 </div>
@@ -309,27 +306,9 @@
           </div>
         </div>
         <div class="row mb-2">
-          <div class="col-xs-10">
+          <div class="col-xs-24 col-sm-14 mb-2">
             <div class="simple-card collapse">
-              <div class="simple-card-header text-blue">
-                <h2 class="display-inline">Lifetime Totals</h2>
-                <div class="pull-right">
-                  <span class="fa fa-minus fa-2x"></span>
-                  <span class="fa fa-plus fa-2x hidden"></span>
-                </div>
-              </div>
-              <div class="simple-card-body">
-                <div class="row">
-                  <div class="col-xs-24">
-                    <canvas id="mychart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-14">
-            <div class="simple-card collapse">
-              <div class="simple-card-header text-blue">
+              <div class="simple-card-header">
                 <h2 class="display-inline">Reasons A Song Finished</h2>
                 <div class="pull-right">
                   <span class="fa fa-minus fa-2x"></span>
@@ -339,18 +318,18 @@
               <div class="simple-card-body">
                 <div class="row">
                   <div class="col-xs-24">
-                    <canvas id="end-reason-type"></canvas>
+                    <div class="chart-container">
+                      <canvas id="end-reason-type"></canvas>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row mb-2">
-          <div class="col-xs-8">
+          <!-- <div class="col-xs-24 col-sm-10">
             <div class="simple-card collapse">
-              <div class="simple-card-header text-blue">
-                <h2 class="display-inline">Lifetime Totals</h2>
+              <div class="simple-card-header">
+                <h2 class="display-inline">Devices</h2>
                 <div class="pull-right">
                   <span class="fa fa-minus fa-2x"></span>
                   <span class="fa fa-plus fa-2x hidden"></span>
@@ -359,67 +338,13 @@
               <div class="simple-card-body">
                 <div class="row">
                   <div class="col-xs-24">
-                    <canvas id="mychart3"></canvas>
+                    <div class="chart-container">
+                      <canvas id="devices"></canvas>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="col-xs-8">
-            <div class="simple-card collapse">
-              <div class="simple-card-header text-blue">
-                <h2 class="display-inline">Lifetime Totals</h2>
-                <div class="pull-right">
-                  <span class="fa fa-minus fa-2x"></span>
-                  <span class="fa fa-plus fa-2x hidden"></span>
-                </div>
-              </div>
-              <div class="simple-card-body">
-                <div class="row">
-                  <div class="col-xs-24">
-                    <canvas id="mychart4"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-8">
-            <div class="simple-card collapse">
-              <div class="simple-card-header text-blue">
-                <h2 class="display-inline">Lifetime Totals</h2>
-                <div class="pull-right">
-                  <span class="fa fa-minus fa-2x"></span>
-                  <span class="fa fa-plus fa-2x hidden"></span>
-                </div>
-              </div>
-              <div class="simple-card-body">
-                <div class="row">
-                  <div class="col-xs-24">
-                    <canvas id="mychart5"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row mb-2">
-          <div class="col-xs-24">
-            <div class="simple-card collapse">
-              <div class="simple-card-header text-blue">
-                <h2 class="display-inline">Lifetime Totals</h2>
-                <div class="pull-right">
-                  <span class="fa fa-minus fa-2x"></span>
-                  <span class="fa fa-plus fa-2x hidden"></span>
-                </div>
-              </div>
-              <div class="simple-card-body">
-                <div class="row">
-                  <div class="col-xs-24">
-                    <canvas id="mychart6"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

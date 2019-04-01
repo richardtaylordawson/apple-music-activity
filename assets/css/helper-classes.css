@@ -62,3 +62,9 @@
     border-right: 1px solid rgb(128, 128, 128);
   }
 }
+
+@media (min-width: 768px) {
+  .pull-right-tablet-up {
+    float: right;
+  }
+}

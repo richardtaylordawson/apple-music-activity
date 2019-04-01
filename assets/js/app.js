@@ -66,7 +66,8 @@ class AppleMusicActivity {
     }
 
     this.charts = {
-      "end-reason-type": document.getElementById("end-reason-type")
+      "end-reason-type": document.getElementById("end-reason-type"),
+      "devices": document.getElementById("devices")
     }
 
     // Data that will come from the uploaded file
@@ -274,16 +275,6 @@ class AppleMusicActivity {
     }
   }
 
-  startDemo() {
-    setTimeout(() => {
-      this.resultsScreen["original-songs"].innerText = "2,343";
-      this.resultsScreen["original-artists"].innerText = "743";
-      this.resultsScreen["total-plays"].innerText = "19,152";
-      this.resultsScreen["view-lyrics"].innerText = "513";
-      this.transitionToResultsContainer(true);
-    }, 1000);
-  }
-
   /**
    * Show loading using Apple beach ball
    */
@@ -346,71 +337,125 @@ class AppleMusicActivity {
   }
 
   /**
-   * Reduces the data down and calls the appropriate chart draw methods
+   * Increments the current option or creates it and sets to 1
+   * @param {object} object - object that contains the keys
+   * @param {string} key - key being checked if it exists in the object
+   * @return {object} - returns the object that was incremented
    */
-  calculateData() {
-    let totalLyrics = 0;
-    let totalDuration = 0;
+  incrementOption(object, key) {
+    (object.hasOwnProperty(key))
+      ? object[key]++
+      : object[key] = 1;
 
+    return object;
+  }
+
+  /**
+   * Converts the number passed in to have commas separating every 3 characters
+   * @param {number} number - number to be converted
+   * @return {string} - string that contains the number separated by commas
+   */
+  formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  /**
+   * Changes the case of the passed in label
+   * @param {string} label - chart label to be split up and case changed
+   * @return {string} - newly formatted label
+   */
+  formatLabel(label) {
+    const parts = label.split("_").join(" ");
+    return parts.charAt(0).toUpperCase() + parts.substring(1).toLowerCase();
+  }
+
+  /**
+   * Calls necessary methods while passing in demo value
+   */
+  startDemo() {
+    // Setting timeout to ensure transition is complete before getting data
+    setTimeout(() => {
+      const url = "https://raw.githubusercontent.com/richardtaylordawson/apple-music-activity/master/assets/files/Apple%20Music%20Play%20Activity.csv";
+
+      fetch(url)
+        .then((res) => res.text())
+        .then((data) => {
+          this.musicData = this.convertCSVToJSON(data);
+          this.calculateData(true);
+        });
+    }, 1000);
+  }
+
+  /**
+   * Reduces the data down and calls the appropriate chart draw methods
+   * @param {bool} demo - demo data or not
+   */
+  calculateData(demo = false) {
     this.calculatedData = this.musicData.reduce((acc, item) => {
-      const song = item["Song Name"];
-      const artist = item["Artist Name"];
-      const endReasonType = item["End Reason Type"];
-      const appleMusic = item["Apple Music Subscription"];
-      const buildVersion = item["Build Version"];
-      const mediaType = item["Media Type"];
-      const eventType = item["Event Type"];
-      const playDuration = item["Play Duration Milliseconds"];
+      // Check to make sure the current item was an actual song being played and not another event
+      if (
+        item["Song Name"] !== "" &&
+        item["Song Name"] !== undefined
+        // item["Artist Name"] !== "" && // Added as a precaution, however, no artist name was blank when song was filled out
+        // item["Play Duration Milliseconds"] !== "" && // Duration the song was played
+        // Number(item["Media Duration In Milliseconds"]) > 0 && // Song's duration
+        // item["Event End Timestamp"] !== "" &&
+        // item["UTC Offset In Seconds"] !== "" &&
+        // item["Event Type"] === "PLAY_END" &&
+        // item["Item Type"] !== "ORIGINAL_CONTENT_SHOWS" &&
+        // item["Media Type"] !== "VIDEO" &&
+        // item["End Reason Type"] !== "FAILED_TO_LOAD"
+      ) {
+        acc.songs = this.incrementOption(acc.songs, item["Song Name"]);
+        acc.artists = this.incrementOption(acc.artists, item["Artist Name"]);
+        acc.endReasonType = this.incrementOption(acc.endReasonType, item["End Reason Type"]);
 
-      if(song !== "") {
-        totalDuration += playDuration;
+        acc.playDuration += Number(item["Play Duration Milliseconds"]);
 
-        (acc.songs.hasOwnProperty(song))
-          ? acc.songs[song]++
-          : acc.songs[song] = 1;
+        // const deviceTypes = {
+        //   "Apple TV (2nd Gen)": ["AppleTV2,1"],
+        //   "Apple TV (3rd Gen)": ["AppleTv3,1", "AppleTV3,2"],
+        //   "Apple TV (4th Gen)": ["AppleTV5,3"],
+        //   "Apple TV 4K": ["AppleTV6,2"],
+        //   "Apple Watch (1st Gen)": [],
+        //   "Apple Watch Series 1": [],
+        //   "Apple Watch Series 2": [],
+        //   "Apple Watch Series 3": [],
+        //   "Apple Watch Series 4": []
+        // }
 
-        (acc.artists.hasOwnProperty(artist))
-          ? acc.artists[artist]++
-          : acc.artists[artist] = 1;
+        // if(item["Build Version"] !== undefined) {
+        //   let parts = item["Build Version"].split(" ");
 
-        (acc.endReasonType.hasOwnProperty(endReasonType))
-          ? acc.endReasonType[endReasonType]++
-          : acc.endReasonType[endReasonType] = 1;
+        //   if(parts.length < 3) {
+        //     acc.buildVersion = this.incrementOption(acc.buildVersion, "Not Defined");
+        //   } else {
+        //     if(parts.length === 3) {
+        //       console.log(item);
+        //       acc.buildVersion = this.incrementOption(acc.buildVersion, parts[2].replace("/model", ""));
+        //     } else {
 
-        (acc.appleMusic.hasOwnProperty(appleMusic))
-          ? acc.appleMusic[appleMusic]++
-          : acc.appleMusic[appleMusic] = 1;
-
-        (acc.buildVersion.hasOwnProperty(buildVersion))
-          ? acc.buildVersion[buildVersion]++
-          : acc.buildVersion[buildVersion] = 1;
-
-        (acc.mediaType.hasOwnProperty(mediaType))
-          ? acc.mediaType[mediaType]++
-          : acc.mediaType[mediaType] = 1;
-
-        if(eventType === "LYRIC_DISPLAY") {
-          totalLyrics++;
-        }
+        //     }
+        //   }
+        // } else {
+        //   acc.buildVersion = this.incrementOption(acc.buildVersion, "Not Defined");
+        // }
       }
 
-      acc.totalSongs++;
+      if(item["Event Type"] === "LYRIC_DISPLAY") { acc.totalLyrics++; }
 
       return acc;
     }, {
-      totalSongs: 0,
-      endReasonType: {},
-      appleMusic: {},
       songs: {},
       artists: {},
-      buildVersion: {},
-      mediaType: {}
+      totalLyrics: 0,
+      endReasonType: {},
+      playDuration: 0
     });
 
     this.drawTotals();
     this.drawEndReasonType();
-
-    this.transitionToResultsContainer(false);
+    this.transitionToResultsContainer(demo);
   }
 
   /**
@@ -418,24 +463,14 @@ class AppleMusicActivity {
    */
   drawTotals() {
     const songs = Object.entries(this.calculatedData.songs);
-    const artists = Object.entries(this.calculatedData.artists);
+    const totalArtists = Object.entries(this.calculatedData.artists).length;
+    const totalPlays = songs.reduce((acc, currentSong) => acc += currentSong[1], 0);
 
-    let highest = 0;
-    let highestName = "";
-    let totalPlays = 0;
-
-    songs.map(currentSong => {
-      if(currentSong[1] > highest) {
-        highest = currentSong[1];
-        highestName = currentSong[0];
-      }
-      totalPlays += currentSong[1];
-    });
-
-    this.resultsScreen["total-plays"].innerText = totalPlays;
-    this.resultsScreen["original-songs"].innerText = songs.length;
-    this.resultsScreen["original-artists"].innerText = artists.length;
-    this.resultsScreen["view-lyrics"].innerText = totalLyrics;
+    this.resultsScreen["total-time-listening"].innerText = "23d 12h 3m 47s"; //this.calculatedData.totalDuration;
+    this.resultsScreen["total-plays"].innerText = this.formatNumberWithCommas(totalPlays);
+    this.resultsScreen["original-songs"].innerText = this.formatNumberWithCommas(songs.length);
+    this.resultsScreen["original-artists"].innerText = this.formatNumberWithCommas(totalArtists);
+    this.resultsScreen["view-lyrics"].innerText = this.formatNumberWithCommas(this.calculatedData.totalLyrics);
   }
 
   /**
@@ -455,26 +490,73 @@ class AppleMusicActivity {
       "TRACK_SKIPPED_FORWARDS"
     ];
 
-    const endReasonTypes = Object.entries(this.calculatedData.endReasonType);
-
-    let labels = [];
     let data = [];
+    let labels = [];
 
-    const filteredTypes = endReasonTypes.filter(item => possibleEndReasonTypes.includes(item[0])).map((item, index) => {
-      const parts = item[0].split("_").join(" ");
-      const test = parts.charAt(0).toUpperCase() + parts.substring(1).toLowerCase();
-
-      labels.push(test);
+    Object.entries(this.calculatedData.endReasonType).filter(item => possibleEndReasonTypes.includes(item[0])).map(item => {
+      labels.push(this.formatLabel(item[0]));
       data.push(item[1]);
     });
 
-    new Chart(this.charts["end-reason-type"].getContext('2d'), {
+    new Chart(this.charts["end-reason-type"], {
       type: 'pie',
       data: {
         labels: labels,
         datasets: [{ data: data }]
       },
-      options: { plugins: { colorschemes: { scheme: 'brewer.RdPu9' } } }
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+        plugins: { colorschemes: { scheme: 'brewer.GnBu9' } }
+      }
+    });
+  }
+
+  /**
+   * Draws the media device chart that shows what devices the user listens on
+   */
+  drawMediaDevice() {
+    let labels = [];
+    let data = [];
+
+    const endReasonTypes = Object.entries(this.calculatedData.endReasonType);
+
+    endReasonTypes.filter(item => possibleEndReasonTypes.includes(item[0])).map(item => {
+      const parts = item[0].split("_").join(" ");
+      const newLabel = parts.charAt(0).toUpperCase() + parts.substring(1).toLowerCase();
+
+      labels.push(newLabel);
+      data.push(item[1]);
+    });
+
+    new Chart(this.charts["devices"], {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'iPhone',
+            data: data
+          },
+          {
+            label: '# of Songs',
+            data: data
+          },
+        ]
+      },
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+        scales: {
+          xAxes: [{
+            stacked: true
+          }],
+          yAxes: [{
+            stacked: true
+          }]
+        },
+        plugins: { colorschemes: { scheme: 'tableau.Tableau20' } }
+      }
     });
   }
 }
