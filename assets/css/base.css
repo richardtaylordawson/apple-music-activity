@@ -5,7 +5,9 @@ html { height: 100%; }
 
 body {
   font-family: SF-Regular;
-  background-image: linear-gradient(to right, #fa57c1, #b166cc, #7572ff, #69a6f9);
+  background-image: linear-gradient(135deg, #fa57c1, #b166cc, #7572ff, #69a6f9);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: white;
   height: 100%;
 }

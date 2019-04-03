@@ -387,6 +387,15 @@ class AppleMusicActivity {
   }
 
   /**
+   * Checks a given variable to see if it exists or has a value
+   * @param {string} variable - value to be checked
+   * @return {bool} - true or false if a var ex
+   */
+  checkIfVarExists(variable) {
+    return (variable !== "" && variable !== undefined);
+  }
+
+  /**
    * Reduces the data down and calls the appropriate chart draw methods
    * @param {bool} demo - demo data or not
    */
@@ -394,17 +403,16 @@ class AppleMusicActivity {
     this.calculatedData = this.musicData.reduce((acc, item) => {
       // Check to make sure the current item was an actual song being played and not another event
       if (
-        item["Song Name"] !== "" &&
-        item["Song Name"] !== undefined
-        // item["Artist Name"] !== "" && // Added as a precaution, however, no artist name was blank when song was filled out
-        // item["Play Duration Milliseconds"] !== "" && // Duration the song was played
-        // Number(item["Media Duration In Milliseconds"]) > 0 && // Song's duration
+        this.checkIfVarExists(item["Song Name"]) &&
+        this.checkIfVarExists(item["Artist Name"]) &&
+        this.checkIfVarExists(item["Play Duration Milliseconds"]) &&
+        Number(item["Media Duration In Milliseconds"]) > 0 &&
+        item["End Reason Type"] !== "FAILED_TO_LOAD" &&
+        item["Media Type"] !== "VIDEO" &&
+        item["Item Type"] !== "ORIGINAL_CONTENT_SHOWS" && // personally dont have this in my file but good to have
+        item["Event Type"] === "PLAY_END" // has all the necessary information needed for the reports
         // item["Event End Timestamp"] !== "" &&
         // item["UTC Offset In Seconds"] !== "" &&
-        // item["Event Type"] === "PLAY_END" &&
-        // item["Item Type"] !== "ORIGINAL_CONTENT_SHOWS" &&
-        // item["Media Type"] !== "VIDEO" &&
-        // item["End Reason Type"] !== "FAILED_TO_LOAD"
       ) {
         acc.songs = this.incrementOption(acc.songs, item["Song Name"]);
         acc.artists = this.incrementOption(acc.artists, item["Artist Name"]);
