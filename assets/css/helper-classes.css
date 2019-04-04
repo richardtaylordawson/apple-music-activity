@@ -13,6 +13,7 @@
 .mr-7 { margin-right: 70px; }
 .mt-1 { margin-top: 10px; }
 .collapse-bottom { margin-bottom: 0; }
+.collapse-top { margin-top: 0; }
 
 /* Text Classes */
 .text-small { font-size: 10px; line-height: 0; }
