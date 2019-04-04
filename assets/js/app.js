@@ -17,7 +17,8 @@ class AppleMusicActivity {
       "instagram-btn": document.getElementById("instagram-btn"),
       "twitter-btn": document.getElementById("twitter-btn"),
       "facebook-btn": document.getElementById("facebook-btn"),
-      "snapchat-btn": document.getElementById("snapchat-btn")
+      "snapchat-btn": document.getElementById("snapchat-btn"),
+      "page-title": document.getElementById("page-title")
     }
 
     this.homeScreen = {
@@ -134,21 +135,21 @@ class AppleMusicActivity {
    * @param {element} element - DOM element of current screen
    */
   transitionToHomeContainer(element) {
-    this.hideElement(element, true, this.homeScreen["home-container"]);
+    this.hideElement(element, true, this.homeScreen["home-container"], false, "");
   }
 
   /**
    * Transitions the app from the home screen to the upload screen
    */
   transitionToUploadContainer() {
-    this.hideElement(this.homeScreen["home-container"], true, this.uploadScreen["upload-container"]);
+    this.hideElement(this.homeScreen["home-container"], true, this.uploadScreen["upload-container"], "- Upload");
   }
 
   /**
    * Transitions the app from the home screen to the how to screen
    */
   transitionToHowToContainer() {
-    this.hideElement(this.homeScreen["home-container"], true, this.howToScreen["how-to-container"]);
+    this.hideElement(this.homeScreen["home-container"], true, this.howToScreen["how-to-container"], "- How To");
   }
 
   /**
@@ -168,9 +169,7 @@ class AppleMusicActivity {
       ? this.demoScreen["demo-container"]
       : this.uploadScreen["upload-container"];
 
-    // TODO Need to add something that shows a demo is being shown
-
-    this.hideElement(element, true, this.resultsScreen["results-container"], true);
+    this.hideElement(element, true, this.resultsScreen["results-container"], true, "- Demo");
   }
 
   /**
@@ -202,8 +201,9 @@ class AppleMusicActivity {
    * @param {bool} animate - Tells function whether or not to animate the hiding
    * @param {element} afterAnimationElement - element to show after animation
    * @param {bool} stopLoading - calls stopLoading for the file input
+   * @param {string} title - Changes out the title in the navigation
    */
-  hideElement(element, animate = false, afterAnimationElement, stopLoading = false) {
+  hideElement(element, animate = false, afterAnimationElement, stopLoading = false, title = "") {
     if(animate) {
       this.homeScreen["transition-interval"] = setInterval(() => {
         (element.style.opacity === "")
@@ -214,6 +214,7 @@ class AppleMusicActivity {
           clearInterval(this.homeScreen["transition-interval"]);
           element.classList.add("hidden");
           this.showElement(afterAnimationElement);
+          this.navContainer["page-title"].innerText = title;
 
           if(stopLoading) {
             this.stopLoading();
@@ -222,6 +223,7 @@ class AppleMusicActivity {
       }, 1);
     } else {
       element.classList.add("hidden");
+      this.navContainer["page-title"].innerText = title;
     }
   }
 
