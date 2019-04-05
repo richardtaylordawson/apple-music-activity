@@ -1,0 +1,58 @@
+/* Start of theme colors */
+$pink: #fa57c1;
+$dark-pink: #b166cc;
+$purple: #7572ff;
+$blue: #69a6f9;
+$white: #ffffff;
+$darker-white: #fefefe;
+$opaque-white: rgba(250, 250, 250, 0.85);
+$gray: #8e8e8e;
+$dark-gray: #808080;
+$darkest-gray: #525252;
+$opaque-black: rgba(0, 0, 0, 0.4);
+
+/* Start of general html/body */
+@font-face { font-family: SF-Bold; src: url('./../fonts/SF-Compact-Rounded-Bold.otf'); }
+@font-face { font-family: SF-Regular; src: url('./../fonts/SF-Compact-Rounded-Regular.otf'); }
+
+html { height: 100%; }
+
+body {
+  font-family: SF-Regular;
+  background-image: linear-gradient(135deg, $pink, $dark-pink, $purple, $blue);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: $white;
+  height: 100%;
+}
+
+/* Start of elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: SF-Bold;
+}
+
+a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* Page content excluding footer */
+.page-content {
+  min-height: 100%;
+  margin-bottom: -40px; /* Brings footer up */
+}
+
+#footer-container,
+.page-content::after {
+  height: 40px;
+}
