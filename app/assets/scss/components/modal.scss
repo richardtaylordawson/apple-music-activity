@@ -18,11 +18,11 @@
     i {
       margin-top: 5px;
       cursor: pointer;
-    }
 
-    i:hover {
-      color: $pink;
-      transition: all 0.40s;
+      &:hover {
+        color: $pink;
+        transition: all 0.40s;
+      }
     }
   }
 
@@ -35,20 +35,16 @@
     margin: 10% auto;
     padding: 0;
     width: 40%;
-  }
-}
 
-/* Tablet Adjustments */
-@media (max-width: 768px) {
-  .modal-content {
-    width: 90%;
-    margin: 20% auto;
-  }
-}
+    @include mobile-down {
+      width: 90%;
+      margin: 20% auto;
+    }
 
-/* Mobile Adjustments */
-@media (max-width: 425px) {
-  .modal-content {
-    width: 92.5%;
+    @include mobile-small {
+      .modal-content {
+        width: 92.5%;
+      }
+    }
   }
 }

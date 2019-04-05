@@ -1,16 +1,18 @@
-@import './third-party/bootstrap-grid-24.scss';
-@import "./../../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css";
-@import './third-party/hamburgers.scss';
-@import './base.scss';
-@import './helper-classes.scss';
-@import './components/button.scss';
-@import './components/chart.scss';
-@import './components/file-upload.scss';
-@import './components/ios-toggle.scss';
-@import './components/loader.scss';
-@import './components/modal.scss';
-@import './components/nav-pill.scss';
-@import './components/navigation.scss';
-@import './components/option-card.scss';
-@import './components/simple-card.scss';
-@import './components/top-scroll.scss';
+@import
+'./../../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css',
+'./third-party/bootstrap-grid-24.scss',
+'./third-party/hamburgers.scss',
+'./mixins.scss', // must be imported before the rest of the custom components so they can be used
+'./base.scss',
+'./helper-classes.scss',
+'./components/button.scss',
+'./components/chart.scss',
+'./components/file-upload.scss',
+'./components/ios-toggle.scss',
+'./components/loader.scss',
+'./components/modal.scss',
+'./components/nav-pill.scss',
+'./components/navigation.scss',
+'./components/option-card.scss',
+'./components/simple-card.scss',
+'./components/top-scroll.scss';

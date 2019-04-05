@@ -1,9 +1,17 @@
-.social-media-container { margin-top: 15px; }
+.social-media-container {
+  margin-top: 15px;
 
-.social-media-container i:hover {
-  cursor: pointer;
-  color: #fa57c1;
-  transition: all 0.40s;
+  @include mobile-down {
+    display: none;
+  }
+
+  i {
+    &:hover {
+      cursor: pointer;
+      color: $pink;
+      transition: all 0.40s;
+    }
+  }
 }
 
 .hamburger {
@@ -11,20 +19,12 @@
   float: right;
   padding: 5px;
   margin-top: 15px;
-}
 
-.hamburger .hamburger-box .hamburger-inner,
-.hamburger .hamburger-box .hamburger-inner:after,
-.hamburger .hamburger-box .hamburger-inner:before {
-  background-color: white;
-}
+  @include mobile-down {
+    display: block;
+  }
 
-.hamburger:active {
-  background-color: red;
-}
-
-/* Tablet Adjustments */
-@media (max-width: 768px) {
-  .social-media-container { display: none; }
-  .hamburger { display: block; }
+  .hamburger-box .hamburger-inner,
+  .hamburger-box .hamburger-inner:after,
+  .hamburger-box .hamburger-inner:before { background-color: $white; }
 }

@@ -1,0 +1,30 @@
+/* Mobile, Tablet, and Desktop Adjustments */
+@mixin mobile-small {
+  @media screen and (max-width: 425px) {
+    @content;
+  }
+}
+
+@mixin mobile-down {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media screen and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media screen and (min-width: 991px) {
+    @content;
+  }
+}

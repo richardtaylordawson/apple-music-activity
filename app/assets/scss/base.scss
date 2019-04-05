@@ -3,17 +3,22 @@ $pink: #fa57c1;
 $dark-pink: #b166cc;
 $purple: #7572ff;
 $blue: #69a6f9;
+$green: #4cd964;
 $white: #ffffff;
 $darker-white: #fefefe;
 $opaque-white: rgba(250, 250, 250, 0.85);
 $gray: #8e8e8e;
 $dark-gray: #808080;
 $darkest-gray: #525252;
+$lightest-black: #616161;
+$light-black: #333333;
+$opaque-black-light: rgba(0, 0, 0, 0.2);
 $opaque-black: rgba(0, 0, 0, 0.4);
+$opaque-black-dark: rgba(0, 0, 0, 0.7);
 
 /* Start of general html/body */
-@font-face { font-family: SF-Bold; src: url('./../fonts/SF-Compact-Rounded-Bold.otf'); }
-@font-face { font-family: SF-Regular; src: url('./../fonts/SF-Compact-Rounded-Regular.otf'); }
+@font-face { font-family: SF-Bold; src: url('./../../../dist/fonts/SF-Compact-Rounded-Bold.otf'); }
+@font-face { font-family: SF-Regular; src: url('./../../../dist/fonts/SF-Compact-Rounded-Regular.otf'); }
 
 html { height: 100%; }
 
@@ -47,12 +52,10 @@ img {
 }
 
 /* Page content excluding footer */
-.page-content {
+main {
   min-height: 100%;
   margin-bottom: -40px; /* Brings footer up */
 }
 
-#footer-container,
-.page-content::after {
-  height: 40px;
-}
+footer,
+main::after { height: 40px; }

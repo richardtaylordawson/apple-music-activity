@@ -27,8 +27,12 @@
   color: $white;
 }
 
-.btn-back:hover {
-  transform: translate(0, -1px);
-  transition: all 0.25s;
-  cursor: pointer;
+.btn-back {
+  color: $white;
+
+  &:hover {
+    transform: translate(0, -1px);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
 }
