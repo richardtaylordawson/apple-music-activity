@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://richardtaylordawson.github.io/apple-music-activity/">
+  <a href="https://richardtaylordawson.github.io/apple-music-activity/app">
     <img src="favicon.ico" alt="Music icon" width=72 height=72>
   </a>
 
@@ -20,4 +20,4 @@
 [![GitHub Language Count](https://img.shields.io/github/languages/count/richardtaylordawson/apple-music-activity.svg)](https://github.com/richardtaylordawson/apple-music-activity/)
 
 ## View Project
-<https://richardtaylordawson.github.io/apple-music-activity/>
+<https://richardtaylordawson.github.io/apple-music-activity/app>
