@@ -61,6 +61,11 @@ class AppleMusicActivity {
       "view-lyrics": document.getElementById("view-lyrics")
     }
 
+    this.faqScreen = {
+      "faq-container": document.getElementById("faq-container"),
+      "faq-btns": [...document.getElementsByClassName("faq-btn")]
+    }
+
     this.topScroll = {
       "top-scroll-container": document.getElementById("top-scroll-container"),
       "top-scroll-interval": ""
@@ -120,6 +125,9 @@ class AppleMusicActivity {
       this.transitionToHomeContainer(this.resultsScreen["results-container"]);
     });
 
+    // FAQ Screen
+    this.faqScreen["faq-btns"].map(item => item.addEventListener("click", () => this.transitionToFaqContainer()));
+
     // Modal Close
     [...document.getElementsByClassName("close-modal-btn")].map(item => {
       item.addEventListener("click", e => this.hideElement(e.target.parentElement.parentElement.parentElement.parentElement));
@@ -142,14 +150,14 @@ class AppleMusicActivity {
    * Transitions the app from the home screen to the upload screen
    */
   transitionToUploadContainer() {
-    this.hideElement(this.homeScreen["home-container"], true, this.uploadScreen["upload-container"], "- Upload");
+    this.hideElement(this.homeScreen["home-container"], true, this.uploadScreen["upload-container"], false, "- Upload");
   }
 
   /**
    * Transitions the app from the home screen to the how to screen
    */
   transitionToHowToContainer() {
-    this.hideElement(this.homeScreen["home-container"], true, this.howToScreen["how-to-container"], "- How To");
+    this.hideElement(this.homeScreen["home-container"], true, this.howToScreen["how-to-container"], false, "- How To");
   }
 
   /**
@@ -169,7 +177,19 @@ class AppleMusicActivity {
       ? this.demoScreen["demo-container"]
       : this.uploadScreen["upload-container"];
 
-    this.hideElement(element, true, this.resultsScreen["results-container"], true, "- Demo");
+    const title = (demo)
+      ? "- Demo"
+      : "- Your Stats"
+
+    this.hideElement(element, true, this.resultsScreen["results-container"], true, title);
+  }
+
+  /**
+   * Transitions the app from the results screen to the FAQ screen
+   */
+  transitionToFaqContainer() {
+    console.log('asdfasd');
+    this.hideElement(this.resultsScreen["results-container"], true, this.faqScreen["faq-container"], false, "- FAQ");
   }
 
   /**
@@ -204,6 +224,7 @@ class AppleMusicActivity {
    * @param {string} title - Changes out the title in the navigation
    */
   hideElement(element, animate = false, afterAnimationElement, stopLoading = false, title = "") {
+    console.log('asdf');
     if(animate) {
       this.homeScreen["transition-interval"] = setInterval(() => {
         (element.style.opacity === "")
