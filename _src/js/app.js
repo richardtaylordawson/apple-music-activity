@@ -188,7 +188,6 @@ class AppleMusicActivity {
    * Transitions the app from the results screen to the FAQ screen
    */
   transitionToFaqContainer() {
-    console.log('asdfasd');
     this.hideElement(this.resultsScreen["results-container"], true, this.faqScreen["faq-container"], false, "- FAQ");
   }
 
@@ -224,7 +223,6 @@ class AppleMusicActivity {
    * @param {string} title - Changes out the title in the navigation
    */
   hideElement(element, animate = false, afterAnimationElement, stopLoading = false, title = "") {
-    console.log('asdf');
     if(animate) {
       this.homeScreen["transition-interval"] = setInterval(() => {
         (element.style.opacity === "")
@@ -462,7 +460,6 @@ class AppleMusicActivity {
         //     acc.buildVersion = this.incrementOption(acc.buildVersion, "Not Defined");
         //   } else {
         //     if(parts.length === 3) {
-        //       console.log(item);
         //       acc.buildVersion = this.incrementOption(acc.buildVersion, parts[2].replace("/model", ""));
         //     } else {
 
