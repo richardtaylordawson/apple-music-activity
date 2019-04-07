@@ -1,85 +1,69 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var browserSync = require('browser-sync');
-var useref = require('gulp-useref');
-var uglify = require('gulp-uglify');
-var gulpIf = require('gulp-if');
-var cssnano = require('gulp-cssnano');
+var browserSync = require('browser-sync').create();
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
 var runSequence = require('run-sequence');
 
 gulp.task('browserSync', function() {
-  browserSync({
+  browserSync.init({
     server: {
       baseDir: './'
-    }
+    },
   })
-})
+});
 
 gulp.task('sass', function() {
-  return gulp.src('app/assets/scss/index.scss')
-    .pipe(sass().on('error', sass.logError))
+  return gulp.src('_src/scss/index.scss')
+    .pipe(sass())
     .pipe(gulp.dest('dist/css'))
     .pipe(browserSync.reload({
       stream: true
-    }));
-})
-
-gulp.task('watch', function() {
-  gulp.watch('app/assets/scss/**/*.scss', ['sass']);
-  gulp.watch('app/*.html', browserSync.reload);
-  gulp.watch('app/assets/js/**/*.js', browserSync.reload);
-})
-
-gulp.task('useref', function() {
-  return gulp.src('app/*.html')
-    .pipe(useref())
-    .pipe(gulpIf('*.js', uglify()))
-    .pipe(gulpIf('*.css', cssnano()))
-    .pipe(gulp.dest('dist'));
+    }))
 });
 
-gulp.task('images', function() {
-  return gulp.src('app/assets/images/**/*.+(png|jpg|jpeg|gif|svg)')
-    .pipe(cache(imagemin({
-      interlaced: true,
-    })))
-    .pipe(gulp.dest('dist/images'))
+gulp.task('watch', ['browserSync', 'sass'], function() {
+  gulp.watch('_src/scss/**/*.scss', ['sass']);
+  gulp.watch('./*.html', browserSync.reload);
+  gulp.watch('_src/js/**/*.js', browserSync.reload);
+});
+
+gulp.task('images', function(){
+  return gulp.src('_src/images/**/*.+(png|jpg|jpeg|gif|svg)')
+  .pipe(cache(imagemin()))
+  .pipe(gulp.dest('dist/images'))
 });
 
 gulp.task('fonts', function() {
-  return gulp.src('app/assets/fonts/**/*')
-    .pipe(gulp.dest('dist/fonts'))
-})
+  return gulp.src('_src/fonts/**/*')
+  .pipe(gulp.dest('dist/fonts'))
+});
 
-gulp.task('clean', function() {
-  return del.sync('dist').then(function(cb) {
-    return cache.clearAll(cb);
-  });
-})
+gulp.task('files', function() {
+  return gulp.src('_src/files/**/*')
+  .pipe(gulp.dest('dist/files'))
+});
+
+gulp.task('js', function() {
+  return gulp.src('_src/js/**/*')
+  .pipe(gulp.dest('dist/js'))
+});
 
 gulp.task('clean:dist', function() {
-  return del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
+  return del.sync('dist');
 });
 
-gulp.task('icons', function() {
-  return gulp.src('node_modules/@frntawesome/fontawesome-free/webfonts/*')
-      .pipe(gulp.dest(dist+'/app/fonts/'));
+gulp.task('build', function (callback) {
+  runSequence('clean:dist',
+    ['sass', 'images', 'fonts', 'files', 'js'],
+    callback
+  )
 });
 
-gulp.task('default', function(callback) {
-  runSequence(['sass', 'browserSync'], 'watch',
+gulp.task('default', function (callback) {
+  runSequence(['sass', 'images', 'fonts', 'files', 'js', 'browserSync', 'watch'],
     callback
   )
-})
+});
 
-gulp.task('build', function(callback) {
-  runSequence(
-    'clean:dist',
-    'sass',
-    ['useref', 'images', 'fonts', 'icons'],
-    callback
-  )
-})

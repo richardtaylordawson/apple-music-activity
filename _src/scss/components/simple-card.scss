@@ -1,0 +1,31 @@
+.simple-card {
+  height: 335px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 12px 16px $opaque-black;
+
+  @include tablet-down { height: auto; }
+
+  &.collapse { height: 100%; }
+
+  h2 { margin: 0; }
+
+  .simple-card-header {
+    padding: 10px 16px;
+    height: 50px;
+    background-color: $light-black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    .fa-minus, .fa-plus {
+      cursor: pointer;
+
+      &:hover { color: $pink; }
+    }
+  }
+
+  .simple-card-body {
+    padding: 20px 16px;
+    color: $dark-gray;
+  }
+}
