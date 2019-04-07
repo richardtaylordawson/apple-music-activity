@@ -1,0 +1,38 @@
+.btn {
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.btn-blue {
+  background-color: $blue;
+  border: 1px solid $blue;
+  color: $white;
+}
+
+.btn-pink {
+  background-color: $pink;
+  border: 1px solid $pink;
+  color: $white;
+}
+
+.btn-purple {
+  background-color: $purple;
+  border: 1px solid $purple;
+  color: $white;
+}
+
+.btn-dark-pink {
+  background-color: $dark-pink;
+  border: 1px solid $dark-pink;
+  color: $white;
+}
+
+.btn-back {
+  color: $white;
+
+  &:hover {
+    transform: translate(0, -1px);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,30 @@
+.social-media-container {
+  margin-top: 15px;
+
+  @include mobile-down {
+    display: none;
+  }
+
+  i {
+    &:hover {
+      cursor: pointer;
+      color: $pink;
+      transition: all 0.40s;
+    }
+  }
+}
+
+.hamburger {
+  display: none;
+  float: right;
+  padding: 5px;
+  margin-top: 15px;
+
+  @include mobile-down {
+    display: block;
+  }
+
+  .hamburger-box .hamburger-inner,
+  .hamburger-box .hamburger-inner:after,
+  .hamburger-box .hamburger-inner:before { background-color: $white; }
+}
