@@ -51,8 +51,12 @@
   background-position: center;
 }
 
+@include mobile-down-no-tablet {
+  .hide-on-mobile-down-no-tablet { display: none; }
+}
+
 @include tablet-down {
-  .hide-on-tablet-down { display: none;}
+  .hide-on-tablet-down { display: none; }
 }
 
 @include desktop-up {
