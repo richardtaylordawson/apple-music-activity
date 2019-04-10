@@ -5,7 +5,10 @@ export default class Base {
   constructor() {
     this.comingSoonModal = document.getElementById("coming-soon-modal");
     this.comingSoonModalCloseBtns = [...document.getElementsByClassName("close-modal-btn")];
+
     this.topScrollContainer = document.getElementById("top-scroll-container");
+
+    this.initializeBaseEvents();
   }
 
   /**
@@ -64,7 +67,6 @@ export default class Base {
    * @return {Promise} - promise when hiding of element is complete
    */
   hideElement(element, animate = false) {
-    console.log('asdf');
     return new Promise((resolve, reject) => {
       if(animate) {
         let hidingInterval = setInterval(() => {

@@ -9,10 +9,26 @@ export default class Screen extends Nav {
     super();
 
     this.screens = {
-      "home": document.getElementById("home-container"),
-      "upload": document.getElementById("upload-container"),
-      "howTo": document.getElementById("how-to-container"),
-      "checkDemo": document.getElementById("demo-container")
+      "home": {
+        "element": document.getElementById("home-container"),
+        "title": ""
+      },
+      "upload": {
+        "element": document.getElementById("upload-container"),
+        "title": "Upload"
+      },
+      "howTo": {
+        "element": document.getElementById("how-to-container"),
+        "title": "How To"
+      },
+      "checkDemo": {
+        "element": document.getElementById("demo-container"),
+        "title": "Demo"
+      },
+      "faq": {
+        "element": document.getElementById("faq-container"),
+        "title": "FAQ"
+      }
     }
   }
 
@@ -22,7 +38,10 @@ export default class Screen extends Nav {
    * @param {string} screenToTransitionTo - screen shown after hiding animation
    */
   transitionScreen(screenToTransitionFrom, screenToTransitionTo) {
-    this.hideElement(this.screens[screenToTransitionFrom], true)
-      .then(() => this.showElement(this.screens[screenToTransitionTo]));
+    this.hideElement(this.screens[screenToTransitionFrom].element, true)
+      .then(() => {
+        this.setTitle(this.screens[screenToTransitionTo].title);
+        this.showElement(this.screens[screenToTransitionTo].element);
+      });
   }
 }

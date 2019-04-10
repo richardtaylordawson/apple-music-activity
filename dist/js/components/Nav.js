@@ -1,14 +1,9 @@
 import Base from './Base.js';
 
 /**
- * @author Richard Dawson
- * @classdesc involves all logic, event listeners, and more for navigation component
+ * @classdesc the navigation component transitions the app from screen to screen and has social media sharing features
  */
 export default class Nav extends Base {
-  /**
-   * @constructor
-   * Initializes the navigation state/events
-   */
   constructor() {
     super();
 
@@ -18,8 +13,6 @@ export default class Nav extends Base {
     this.twitterBtm = document.getElementById("twitter-btn");
     this.facebookBtn = document.getElementById("facebook-btn");
     this.snapchatBtn = document.getElementById("snapchat-btn");
-
-    this.initializeNavEvents();
   }
 
   /**
@@ -37,7 +30,9 @@ export default class Nav extends Base {
    * Sets the inner text of the page title element
    * @param {string} newTitle - The title text to set
    */
-  setTitle(newTitle = "") {
-    this.pageTitle.innerText = newTitle;
+  setTitle(newTitle) {
+    this.pageTitle.innerText = (newTitle !== "")
+      ? `- ${newTitle}`
+      : "";
   }
 }

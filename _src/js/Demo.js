@@ -1,21 +1,15 @@
+import Screen from './Screen.js';
+
 /**
- * @author Richard Dawson
- * @classdesc base class for the  Music Activity application that all components extend from
+ * @classdesc the demo screen pulls the data from Github and sends the user to the demo results
  */
-export default class Base {
-  /**
-   * @constructor
-   * Initializes the base state/events for the entire app
-   */
+export default class Demo extends Screen {
   constructor() {
     this.demoScreen = {
       "demo-container": document.getElementById("demo-container")
     }
   }
 
-  /**
-   * Calls necessary methods while passing in demo value
-   */
   startDemo() {
     // Setting timeout to ensure transition is complete before getting data
     setTimeout(() => {

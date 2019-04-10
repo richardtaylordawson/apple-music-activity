@@ -131,4 +131,25 @@ export default class Base {
 
     return object;
   }
+
+  /**
+   * Toggles the simple card accordion on the results screen
+   * @param {object} e - event fired when clicked
+   * @param {bool} hide - tells whether to hide or show
+   */
+  toggleAccordion(e, hide) {
+    const target = e.target;
+    const altTarget = (hide)
+      ? e.target.parentElement.children[1]
+      : e.target.parentElement.children[0];
+
+    const accordionBody = e.target.parentElement.parentElement.parentElement.children[1];
+
+    (hide)
+      ? accordionBody.classList.add("hidden")
+      : accordionBody.classList.remove("hidden");
+
+    target.classList.add("hidden");
+    altTarget.classList.remove("hidden");
+  }
 }

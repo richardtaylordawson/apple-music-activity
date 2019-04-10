@@ -1,21 +1,21 @@
+import Screen from './Screen.js';
+
 /**
- * @author Richard Dawson
- * @classdesc base class for the  Music Activity application that all components extend from
+ * @classdesc the FAQ screen answers all commonly asked questions the user may have
  */
-export default class Base {
-  /**
-   * @constructor
-   * Initializes the base state/events for the entire app
-   */
+export default class FAQ extends Screen {
   constructor() {
-    this.faqScreen = {
-      "faq-container": document.getElementById("faq-container"),
-      "faq-btns": [...document.getElementsByClassName("faq-btn")]
-    }
+    super();
+
+    this.faqBackBtn = document.getElementById("faq-back-btn");
   }
 
+  /**
+   * Initializes the faq screen's click & other events
+   */
   initializeFAQEvents() {
-    // FAQ Screen
-    this.faqScreen["faq-btns"].map(item => item.addEventListener("click", () => this.transitionToFaqContainer()));
+    this.faqBackBtn.addEventListener("click", () => this.transitionScreen("faq", "home"));
   }
 }
+
+

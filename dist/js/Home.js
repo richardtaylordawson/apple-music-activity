@@ -10,6 +10,8 @@ export default class Home extends Screen {
     this.howToCard = document.getElementById("how-to-card");
     this.checkDemoCard = document.getElementById("check-demo-card");
     this.getStartedCard = document.getElementById("get-started-card");
+
+    this.initializeHomeEvents();
   }
 
   /**

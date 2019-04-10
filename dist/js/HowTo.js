@@ -8,11 +8,10 @@ export default class HowTo extends Screen {
     super();
 
     this.howToBackBtn = document.getElementById("how-to-back-btn");
+
+    this.initializeHowToEvents();
   }
 
-  /**
-   * Initializes the how to screen's click & other events
-   */
   initializeHowToEvents() {
     this.howToBackBtn.addEventListener("click", () => this.transitionScreen("howTo", "home"));
   }

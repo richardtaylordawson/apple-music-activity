@@ -5,13 +5,7 @@ export default class Base {
   constructor() {
     this.comingSoonModal = document.getElementById("coming-soon-modal");
     this.comingSoonModalCloseBtns = [...document.getElementsByClassName("close-modal-btn")];
-
     this.topScrollContainer = document.getElementById("top-scroll-container");
-    this.topScrollInterval = "";
-
-    this.hidingInterval = "";
-
-    this.initializeBaseEvents();
   }
 
   /**
@@ -19,7 +13,7 @@ export default class Base {
    */
   initializeBaseEvents() {
     this.comingSoonModalCloseBtns.map(item => {
-      item.addEventListener("click", e => this.hideElement());
+      item.addEventListener("click", e => this.hideElement(e.target.parentElement.parentElement.parentElement.parentElement));
     });
 
     document.addEventListener("scroll", () => this.handleScroll());
@@ -39,12 +33,12 @@ export default class Base {
    * Transitions the app from the current state to the top of the screen slowly/animated
    */
   scrollToTop() {
-    this.topScrollInterval = setInterval(() => {
+    let topScrollInterval = setInterval(() => {
       document.body.scrollTop -= 10; // For Safari
       document.documentElement.scrollTop -= 10; // For Chrome, Firefox, IE and Opera
 
       if (document.body.scrollTop <= 0 && document.documentElement.scrollTop <= 0) {
-        clearInterval(this.topScrollInterval);
+        clearInterval(topScrollInterval);
       }
     }, 1);
   }
@@ -70,15 +64,16 @@ export default class Base {
    * @return {Promise} - promise when hiding of element is complete
    */
   hideElement(element, animate = false) {
+    console.log('asdf');
     return new Promise((resolve, reject) => {
       if(animate) {
-        this.hidingInterval = setInterval(() => {
+        let hidingInterval = setInterval(() => {
           (element.style.opacity === "")
             ? element.style.opacity = "1"
             : element.style.opacity -= "0.01";
 
           if (element.style.opacity <= "0") {
-            clearInterval(this.hidingInterval);
+            clearInterval(hidingInterval);
             element.classList.add("hidden");
             resolve(true);
           }
@@ -88,94 +83,6 @@ export default class Base {
         resolve(true);
       }
     });
-  }
-
-  transitionScreen(screenToTransitionTo) {
-
-    this.hideElement(element, true, this.homeScreen["home-container"], false, "");
-  }
-
-
-
-
-
-
-
-
-
-
-  /**
-   * Transitions the app from the current screen back to the home screen
-   * @param {element} element - DOM element of current screen
-   */
-  transitionToHomeContainer(element) {
-    this.hideElement(element, true, this.homeScreen["home-container"], false, "");
-  }
-
-  /**
-   * Transitions the app from the home screen to the upload screen
-   */
-  transitionToUploadContainer() {
-    this.hideElement(this.homeScreen["home-container"], true, this.uploadScreen["upload-container"], false, "- Upload");
-  }
-
-  /**
-   * Transitions the app from the home screen to the how to screen
-   */
-  transitionToHowToContainer() {
-    this.hideElement(this.homeScreen["home-container"], true, this.howToScreen["how-to-container"], false, "- How To");
-  }
-
-  /**
-   * Transitions the app from the home screen to the demo loader
-   */
-  transitionToDemoContainer() {
-    this.hideElement(this.homeScreen["home-container"], true, this.demoScreen["demo-container"]);
-    this.startDemo();
-  }
-
-  /**
-   * Transitions the app from the upload screen to the results screen
-   * @param {bool} demo - tells whether to display the demo or normal results
-   */
-  transitionToResultsContainer(demo) {
-    const element = (demo)
-      ? this.demoScreen["demo-container"]
-      : this.uploadScreen["upload-container"];
-
-    const title = (demo)
-      ? "- Demo"
-      : "- Your Stats"
-
-    this.hideElement(element, true, this.resultsScreen["results-container"], true, title);
-  }
-
-  /**
-   * Transitions the app from the results screen to the FAQ screen
-   */
-  transitionToFaqContainer() {
-    this.hideElement(this.resultsScreen["results-container"], true, this.faqScreen["faq-container"], false, "- FAQ");
-  }
-
-  /**
-   * Toggles the simple card accordion on the results screen
-   * @param {object} e - event fired when clicked
-   * @param {bool} hide - tells whether to hide or show
-   */
-  toggleAccordion(e, hide) {
-    const target = e.target;
-    const altTarget = (hide)
-      ? e.target.parentElement.children[1]
-      : e.target.parentElement.children[0];
-
-    const accordionBody = e.target.parentElement.parentElement.parentElement.children[1];
-
-    (hide)
-      ? accordionBody.classList.add("hidden")
-      : accordionBody.classList.remove("hidden");
-
-    target.classList.add("hidden");
-    altTarget.classList.remove("hidden");
   }
 }
 

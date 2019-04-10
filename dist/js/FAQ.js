@@ -8,6 +8,8 @@ export default class FAQ extends Screen {
     super();
 
     this.faqBackBtn = document.getElementById("faq-back-btn");
+
+    this.initializeFAQEvents();
   }
 
   /**

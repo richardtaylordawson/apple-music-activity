@@ -13,6 +13,8 @@ export default class Nav extends Base {
     this.twitterBtm = document.getElementById("twitter-btn");
     this.facebookBtn = document.getElementById("facebook-btn");
     this.snapchatBtn = document.getElementById("snapchat-btn");
+
+    this.initializeNavEvents();
   }
 
   /**
@@ -30,9 +32,7 @@ export default class Nav extends Base {
    * Sets the inner text of the page title element
    * @param {string} newTitle - The title text to set
    */
-  setTitle(newTitle) {
-    this.pageTitle.innerText = (newTitle !== "")
-      ? `- ${newTitle}`
-      : "";
+  setTitle(newTitle = "") {
+    this.pageTitle.innerText = newTitle;
   }
 }
