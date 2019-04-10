@@ -1,18 +1,15 @@
 /**
- * @author Richard Dawson
  * @classdesc base class for the  Music Activity application that all components extend from
  */
 export default class Base {
-  /**
-   * @constructor
-   * Initializes the base state/events for the entire app
-   */
   constructor() {
     this.comingSoonModal = document.getElementById("coming-soon-modal");
     this.comingSoonModalCloseBtns = [...document.getElementsByClassName("close-modal-btn")];
 
     this.topScrollContainer = document.getElementById("top-scroll-container");
     this.topScrollInterval = "";
+
+    this.hidingInterval = "";
 
     this.initializeBaseEvents();
   }
@@ -70,30 +67,32 @@ export default class Base {
    * Hide's the passed in element with the option of a transition effect
    * @param {element} element - DOM object that will be hidden
    * @param {bool} animate - Tells function whether or not to animate the hiding
-   * @param {element} afterAnimationElement - element to show after animation
-   * @param {bool} stopLoading - calls stopLoading for the file input
-   * @param {string} title - Changes out the title in the navigation
+   * @return {Promise} - promise when hiding of element is complete
    */
-  hideElement(element, animate = false, afterAnimationElement, stopLoading = false, title = "") {
-    if(animate) {
-      this.homeScreen["transition-interval"] = setInterval(() => {
-        (element.style.opacity === "")
-          ? element.style.opacity = "1"
-          : element.style.opacity -= "0.01";
+  hideElement(element, animate = false) {
+    return new Promise((resolve, reject) => {
+      if(animate) {
+        this.hidingInterval = setInterval(() => {
+          (element.style.opacity === "")
+            ? element.style.opacity = "1"
+            : element.style.opacity -= "0.01";
 
-        if (element.style.opacity <= "0") {
-          clearInterval(this.homeScreen["transition-interval"]);
-          element.classList.add("hidden");
-          this.showElement(afterAnimationElement);
-
-          if(stopLoading) {
-            this.stopLoading();
+          if (element.style.opacity <= "0") {
+            clearInterval(this.hidingInterval);
+            element.classList.add("hidden");
+            resolve(true);
           }
-        }
-      }, 1);
-    } else {
-      element.classList.add("hidden");
-    }
+        }, 1);
+      } else {
+        element.classList.add("hidden");
+        resolve(true);
+      }
+    });
+  }
+
+  transitionScreen(screenToTransitionTo) {
+
+    this.hideElement(element, true, this.homeScreen["home-container"], false, "");
   }
 
 

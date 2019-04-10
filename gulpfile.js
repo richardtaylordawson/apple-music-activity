@@ -48,6 +48,9 @@ gulp.task('files', function() {
 gulp.task('js', function() {
   return gulp.src('_src/js/**/*')
   .pipe(gulp.dest('dist/js'))
+  .pipe(browserSync.reload({
+    stream: true
+  }))
 });
 
 gulp.task('clean:dist', function() {

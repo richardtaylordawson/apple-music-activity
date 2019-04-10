@@ -1,23 +1,17 @@
+import Screen from './Screen.js';
+
 /**
- * @author Richard Dawson
- * @classdesc base class for the  Music Activity application that all components extend from
+ * @classdesc the HowTo screen shows the user how to get their apple music data
  */
-export default class Base {
-  /**
-   * @constructor
-   * Initializes the base state/events for the entire app
-   */
+export default class HowTo extends Screen {
   constructor() {
-    this.howToScreen = {
-      "how-to-container": document.getElementById("how-to-container"),
-      "how-to-back-btn": document.getElementById("how-to-back-btn")
-    }
+    this.howToBackBtn = document.getElementById("how-to-back-btn");
+
+    this.initializeHowToEvents();
   }
 
   initializeHowToEvents() {
-    this.howToScreen["how-to-back-btn"].addEventListener("click", () => {
-      this.transitionToHomeContainer(this.howToScreen["how-to-container"]);
-    });
+    this.howToBackBtn.addEventListener("click", () => this.transitionScreen("howTo", "home"));
   }
 }
 

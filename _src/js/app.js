@@ -1,3 +1,5 @@
-import Nav from './components/Nav.js';
+import Home from './components/Home.js';
+import HowTo from './components/HowTo.js';
 
-const navigation = new Nav();
+const homeScreen = new Home();
+const howToScreen = new HowTo();
