@@ -18,6 +18,6 @@ export default class Home extends Screen {
   initializeHomeEvents() {
     this.getStartedCard.addEventListener("click", () => this.transitionScreen("home", "upload"));
     this.howToCard.addEventListener("click", () => this.transitionScreen("home", "howTo"));
-    this.checkDemoCard.addEventListener("click", () => this.transitionScreen("home", "checkDemo"));
+    this.checkDemoCard.addEventListener("click", () => this.transitionScreen("home", "demo"));
   }
 }

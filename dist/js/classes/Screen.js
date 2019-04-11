@@ -21,7 +21,7 @@ export default class Screen extends Nav {
         "element": document.getElementById("how-to-container"),
         "title": "How To"
       },
-      "checkDemo": {
+      "demo": {
         "element": document.getElementById("demo-container"),
         "title": "Demo"
       },

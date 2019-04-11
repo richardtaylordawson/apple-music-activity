@@ -4,7 +4,7 @@
 export default class Base {
   constructor() {
     this.comingSoonModal = document.getElementById("coming-soon-modal");
-    this.comingSoonModalCloseBtns = [...document.getElementsByClassName("close-modal-btn")];
+    this.allModalCloseBtns = [...document.getElementsByClassName("close-modal-btn")];
     this.topScrollContainer = document.getElementById("top-scroll-container");
   }
 
@@ -12,7 +12,7 @@ export default class Base {
    * Initializes the app's base click & other events
    */
   initializeBaseEvents() {
-    this.comingSoonModalCloseBtns.map(item => {
+    this.allModalCloseBtns.map(item => {
       item.addEventListener("click", e => this.hideElement(e.target.parentElement.parentElement.parentElement.parentElement));
     });
 
@@ -64,7 +64,6 @@ export default class Base {
    * @return {Promise} - promise when hiding of element is complete
    */
   hideElement(element, animate = false) {
-    console.log('asdf');
     return new Promise((resolve, reject) => {
       if(animate) {
         let hidingInterval = setInterval(() => {

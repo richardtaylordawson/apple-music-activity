@@ -5,11 +5,12 @@ import Screen from './Screen.js';
  */
 export default class Demo extends Screen {
   constructor() {
-    this.demoScreen = {
-      "demo-container": document.getElementById("demo-container")
-    }
+    super();
   }
 
+  /**
+   * Starts the demo by getting the file data from Github
+   */
   startDemo() {
     // Setting timeout to ensure transition is complete before getting data
     setTimeout(() => {

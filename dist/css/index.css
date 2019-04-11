@@ -6553,27 +6553,30 @@ input[type="checkbox"]:checked:active + .ios-toggle i {
       background-color: #525252;
       transition: all 0.40s; }
 
-.social-media-container {
+.nav-container .nav-title {
+  cursor: pointer; }
+
+.nav-container .social-media-container {
   margin-top: 15px; }
   @media screen and (max-width: 768px) {
-    .social-media-container {
+    .nav-container .social-media-container {
       display: none; } }
-  .social-media-container i:hover {
+  .nav-container .social-media-container i:hover {
     cursor: pointer;
     color: #fa57c1;
     transition: all 0.40s; }
 
-.hamburger {
+.nav-container .hamburger {
   display: none;
   float: right;
   padding: 5px;
   margin-top: 15px; }
   @media screen and (max-width: 768px) {
-    .hamburger {
+    .nav-container .hamburger {
       display: block; } }
-  .hamburger .hamburger-box .hamburger-inner,
-  .hamburger .hamburger-box .hamburger-inner:after,
-  .hamburger .hamburger-box .hamburger-inner:before {
+  .nav-container .hamburger .hamburger-box .hamburger-inner,
+  .nav-container .hamburger .hamburger-box .hamburger-inner:after,
+  .nav-container .hamburger .hamburger-box .hamburger-inner:before {
     background-color: #ffffff; }
 
 .option-card {

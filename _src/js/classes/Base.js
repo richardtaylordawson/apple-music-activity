@@ -4,18 +4,15 @@
 export default class Base {
   constructor() {
     this.comingSoonModal = document.getElementById("coming-soon-modal");
-    this.comingSoonModalCloseBtns = [...document.getElementsByClassName("close-modal-btn")];
-
+    this.allModalCloseBtns = [...document.getElementsByClassName("close-modal-btn")];
     this.topScrollContainer = document.getElementById("top-scroll-container");
-
-    this.initializeBaseEvents();
   }
 
   /**
    * Initializes the app's base click & other events
    */
   initializeBaseEvents() {
-    this.comingSoonModalCloseBtns.map(item => {
+    this.allModalCloseBtns.map(item => {
       item.addEventListener("click", e => this.hideElement(e.target.parentElement.parentElement.parentElement.parentElement));
     });
 
