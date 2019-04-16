@@ -1,9 +1,9 @@
-import Screen from './Screen.js';
+import Page from './../Page.js';
 
 /**
- * @classdesc the Upload screen is the first step in uploading the user data to run the app
+ * @classdesc the Upload page is the first step in uploading the user data to run the app
  */
-export default class ReportScreen extends Screen {
+export default class ReportScreen extends Page {
   constructor() {
     super();
 
@@ -18,10 +18,10 @@ export default class ReportScreen extends Screen {
   }
 
   /**
-   * Initializes the upload screen's click & other events
+   * Initializes the upload page's click & other events
    */
   initializeUploadEvents() {
-    this.uploadBackBtn.addEventListener("click", () => this.transitionScreen("upload", "home"));
+    this.uploadBackBtn.addEventListener("click", () => this.transitionPage("upload", "home"));
     this.uploadInputZone.addEventListener("dragover", e => this.handleDragAndDrop(e, true, false));
     this.uploadInputZone.addEventListener("dragleave", e => this.handleDragAndDrop(e, false, false));
     this.uploadInputZone.addEventListener("drop", e => this.handleDragAndDrop(e, false, true));

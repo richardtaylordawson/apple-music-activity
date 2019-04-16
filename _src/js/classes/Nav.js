@@ -1,7 +1,7 @@
 import Base from './Base.js';
 
 /**
- * @classdesc the navigation component transitions the app from screen to screen and has social media sharing features
+ * @classdesc the navigation component transitions the app from page to page and has social media sharing features
  */
 export default class Nav extends Base {
   constructor() {
