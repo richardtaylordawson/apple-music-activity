@@ -21,12 +21,14 @@
 
       &:hover {
         color: $pink;
-        transition: all 0.40s;
+        transition: all 0.4s;
       }
     }
   }
 
-  .modal-body { padding: 2px 16px; }
+  .modal-body {
+    padding: 2px 16px;
+  }
 
   .modal-content {
     background-color: $darker-white;

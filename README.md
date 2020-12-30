@@ -1,23 +1,18 @@
-<p align="center">
-  <a href="https://apple-music-activity.richarddawson.codes">
-    <img src="favicon.ico" alt="Music icon" width=72 height=72>
-  </a>
+# Apple Music Activity - ![PWA Shields](https://www.pwa-shields.com/1.0.0/series/classic/solid/purple.svg)
 
-  <h3 align="center">Apple Music Activity</h3>
+>  Music Activity is an application that takes your Apple Music data provided by Apple and displays reports of your listening history. Built using Charts.js, Bootstrap, etc.
 
-  <p align="center">
-     Music Activity is an application that takes your Apple Music data provided by Apple and displays reports of your listening history. Built using Charts.js, Bootstrap, etc.
-  </p>
-</p>
+## Run Project
 
-## Status
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/richardtaylordawson/apple-music-activity.svg)](https://github.com/richardtaylordawson/apple-music-activity/commits/master)
-[![GitHub Search Hit Counter](https://img.shields.io/github/search/richardtaylordawson/apple-music-activity/goto.svg)](https://github.com/richardtaylordawson/apple-music-activity/)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0a5caafd5fab4d40a9d098f8cdd4142b)](https://www.codacy.com/app/richardtaylordawson/apple-music-activity?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=richardtaylordawson/apple-music-activity&amp;utm_campaign=Badge_Grade)
-[![GitHub Repo Size in Size](https://img.shields.io/github/repo-size/richardtaylordawson/apple-music-activity.svg)](https://github.com/richardtaylordawson/apple-music-activity/)
-[![GitHub Code Size in Size](https://img.shields.io/github/languages/code-size/richardtaylordawson/apple-music-activity.svg)](https://github.com/richardtaylordawson/apple-music-activity/)
-[![GitHub Top Language](https://img.shields.io/github/languages/top/richardtaylordawson/apple-music-activity.svg)](https://github.com/richardtaylordawson/apple-music-activity/)
-[![GitHub Language Count](https://img.shields.io/github/languages/count/richardtaylordawson/apple-music-activity.svg)](https://github.com/richardtaylordawson/apple-music-activity/)
+```shell
+$ yarn
+$ yarn develop
+```
+
+## Deployment
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/53317287-994b-4b12-af8f-6508efde2e12/deploy-status)](https://app.netlify.com/sites/rtd-apple-music-activity/deploys)
 
 ## View Project
-<https://apple-music-activity.richarddawson.codes>
+
+<https://apple-music-activity.richardtaylordawson.com>

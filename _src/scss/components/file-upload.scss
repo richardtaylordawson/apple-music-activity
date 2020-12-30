@@ -8,12 +8,21 @@
   box-shadow: 0 12px 16px $opaque-black;
   min-height: 300px;
 
-  &.on-file-drag { background-color: $opaque-white; }
+  &.on-file-drag {
+    background-color: $opaque-white;
+  }
 
-  h2 { font-family: SF-Regular; }
-  p { margin-top: 8px; }
+  h2 {
+    font-family: SF-Regular;
+  }
 
-  .file-upload-content { margin: 0 auto; }
+  p {
+    margin-top: 8px;
+  }
+
+  .file-upload-content {
+    margin: 0 auto;
+  }
 
   .file-upload-icon {
     color: $gray;

@@ -19,12 +19,14 @@
     border-radius: 5px;
     font-weight: 800;
 
-    &.active { background-color: $light-black; }
+    &.active {
+      background-color: $light-black;
+    }
 
     &:hover {
       cursor: pointer;
       background-color: $darkest-gray;
-      transition: all 0.40s;
+      transition: all 0.4s;
     }
   }
 }

@@ -1,6 +1,7 @@
-
 .nav-container {
-  .nav-title { cursor: pointer; }
+  .nav-title {
+    cursor: pointer;
+  }
 
   .social-media-container {
     margin-top: 15px;
@@ -13,7 +14,7 @@
       &:hover {
         cursor: pointer;
         color: $pink;
-        transition: all 0.40s;
+        transition: all 0.4s;
       }
     }
   }
@@ -30,6 +31,8 @@
 
     .hamburger-box .hamburger-inner,
     .hamburger-box .hamburger-inner:after,
-    .hamburger-box .hamburger-inner:before { background-color: $white; }
+    .hamburger-box .hamburger-inner:before {
+      background-color: $white;
+    }
   }
 }

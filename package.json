@@ -1,30 +1,42 @@
 {
   "name": "apple-music-activity",
   "version": "1.0.0",
-  "description": " Music Activity is an application that takes your Apple Music data provided by Apple and displays reports of your listening history. Built using Charts.js, Sass, Gulp, etc.",
-  "homepage": "https://apple-music-activity.richarddawson.codes",
-  "dependencies": {
-    "chart.js": "^2.7.3",
-    "chartjs-plugin-colorschemes": "^0.3.0"
-  },
+  "author": "richardtaylordawson",
+  "description": " Music Activity is an application that takes your Apple Music data provided by Apple and displays reports of your listening history. Built using Charts.js, Bootstrap, etc.",
+  "homepage": "https://apple-music-activity.richardtaylordawson.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/richardtaylordawson/apple-music-activity.git"
   },
-  "author": "richardtaylordawson",
   "bugs": {
     "url": "https://github.com/richardtaylordawson/apple-music-activity/issues"
   },
+  "dependencies": {
+    "chart.js": "^2.7.3",
+    "chartjs-plugin-colorschemes": "^0.3.0"
+  },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@pwabuilder/pwainstall": "^1.6.7",
     "browser-sync": "^2.26.3",
     "del": "^4.1.0",
     "gulp": "^3.9.0",
+    "gulp-better-rollup": "^4.0.1",
     "gulp-cache": "^1.1.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^5.0.3",
     "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "prettier": "^2.2.1",
+    "rollup": "^1.19.4",
+    "rollup-plugin-babel": "^4.3.3",
     "run-sequence": "^2.2.1"
   },
   "scripts": {
-    "start": "gulp default"
+    "develop": "gulp default",
+    "build": "gulp build",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   }
 }
