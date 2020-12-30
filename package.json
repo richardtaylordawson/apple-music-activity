@@ -11,10 +11,6 @@
   "bugs": {
     "url": "https://github.com/richardtaylordawson/apple-music-activity/issues"
   },
-  "dependencies": {
-    "chart.js": "^2.7.3",
-    "chartjs-plugin-colorschemes": "^0.3.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
