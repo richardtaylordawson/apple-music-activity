@@ -21,18 +21,20 @@
 
       &:hover {
         color: $pink;
-        transition: all 0.40s;
+        transition: all 0.4s;
       }
     }
   }
 
-  .modal-body {padding: 2px 16px;}
+  .modal-body {
+    padding: 2px 16px;
+  }
 
   .modal-content {
     background-color: $darker-white;
     color: $dark-gray;
     border-radius: 10px;
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 0;
     width: 40%;
 
