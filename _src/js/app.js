@@ -63,11 +63,6 @@ class AppleMusicActivity {
       "view-lyrics": document.getElementById("view-lyrics"),
     }
 
-    this.faqScreen = {
-      "faq-container": document.getElementById("faq-container"),
-      "faq-btns": [...document.getElementsByClassName("faq-btn")],
-    }
-
     this.topScroll = {
       "top-scroll-container": document.getElementById("top-scroll-container"),
       "top-scroll-interval": "",
@@ -157,11 +152,6 @@ class AppleMusicActivity {
       this.transitionToHomeContainer(this.resultsScreen["results-container"])
     })
 
-    // FAQ Screen
-    this.faqScreen["faq-btns"].map((item) =>
-      item.addEventListener("click", () => this.transitionToFaqContainer())
-    )
-
     // Modal Close
     ;[...document.getElementsByClassName("close-modal-btn")].map((item) => {
       item.addEventListener("click", (e) =>
@@ -247,19 +237,6 @@ class AppleMusicActivity {
       this.resultsScreen["results-container"],
       true,
       title
-    )
-  }
-
-  /**
-   * Transitions the app from the results screen to the FAQ screen
-   */
-  transitionToFaqContainer() {
-    this.hideElement(
-      this.resultsScreen["results-container"],
-      true,
-      this.faqScreen["faq-container"],
-      false,
-      "- FAQ"
     )
   }
 
