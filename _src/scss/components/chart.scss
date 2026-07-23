@@ -2,3 +2,21 @@
   height: 250px;
   width: 100%;
 }
+
+.chart-placeholder {
+  align-items: center;
+  color: $dark-gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  i {
+    color: $pink;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    margin: 0;
+  }
+}
