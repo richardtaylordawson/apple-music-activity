@@ -1,6 +1,6 @@
 # Apple Music Activity
 
->  Music Activity is an application that takes your Apple Music data provided by Apple and displays reports of your listening history. Built using Charts.js, Bootstrap, etc.
+> Apple Music Activity is an application that takes your Apple Music data provided by Apple and displays reports of your listening history. Built using Charts.js, Bootstrap, etc.
 
 ## Run Project
 
