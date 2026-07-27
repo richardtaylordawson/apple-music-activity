@@ -17,6 +17,10 @@ gulp.task("images", () =>
     .pipe(gulp.dest("dist/images"))
 )
 
+gulp.task("rootIcons", () =>
+  gulp.src("_src/apple-touch-icon.png").pipe(gulp.dest("dist"))
+)
+
 gulp.task("statsJs", () =>
   gulp
     .src("_src/js/stats.js", { allowEmpty: true })
@@ -76,6 +80,7 @@ gulp.task("browserSync", () =>
 
 gulp.task("watch", () => {
   gulp.watch("_src/images/**/*.+(png|jpg|jpeg|gif|svg)", gulp.series("images"))
+  gulp.watch("_src/apple-touch-icon.png", gulp.series("rootIcons"))
   gulp.watch("_src/js/**/*.js", gulp.series("js"))
   gulp.watch("_src/scss/**/*.scss", gulp.series("scss"))
   gulp.watch("_src/**/*.html", gulp.series("html"))
@@ -88,7 +93,7 @@ gulp.task(
   "build",
   gulp.series(
     "syncDist",
-    gulp.parallel("images", "js", "scss", "html", "altFiles", "fonts", "files")
+    gulp.parallel("images", "rootIcons", "js", "scss", "html", "altFiles", "fonts", "files")
   )
 )
 
@@ -96,7 +101,7 @@ gulp.task(
   "default",
   gulp.series(
     "syncDist",
-    gulp.parallel("images", "js", "scss", "html", "altFiles", "fonts", "files"),
+    gulp.parallel("images", "rootIcons", "js", "scss", "html", "altFiles", "fonts", "files"),
     gulp.parallel("browserSync", "watch")
   )
 )
